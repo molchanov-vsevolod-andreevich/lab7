@@ -34,18 +34,18 @@ public class Storage {
                 timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;
             }
 
-            ZMsg msg = ZMsg.recvMsg(notifier);
-
-            if (msg != null) {
-                String cmd = new String(msg.getLast().getData());
-
-                String[] split = cmd.split(" ");
-
-                String commandType = split[0];
-                if (commandType.equals("") ) {
-
-                }
-            }
+//            ZMsg msg = ZMsg.recvMsg(notifier);
+//
+//            if (msg != null) {
+//                String cmd = new String(msg.getLast().getData());
+//
+//                String[] split = cmd.split(" ");
+//
+//                String commandType = split[0];
+//                if (commandType.equals("") ) {
+//
+//                }
+//            }
 
 //            // Wait for next request from client
 //            String string = notifier.recvStr (0);
