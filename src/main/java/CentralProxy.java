@@ -6,8 +6,8 @@ public class CentralProxy {
     public static void main(String[] args) {
         ZMQ.Context context = ZMQ.context(1);
 
-        ZMQ.Socket client = context.socket(SocketType.ROUTER); // client
-        ZMQ.Socket storage = context.socket(SocketType.ROUTER); // storage
+        ZMQ.Socket client = context.socket(SocketType.ROUTER);
+        ZMQ.Socket storage = context.socket(SocketType.ROUTER);
         client.bind("tcp://localhost:5559");
         storage.bind("tcp://localhost:5560");
 

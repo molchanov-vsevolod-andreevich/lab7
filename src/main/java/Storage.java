@@ -1,5 +1,6 @@
 import org.zeromq.SocketType;
 import org.zeromq.ZMQ;
+import org.zeromq.ZMsg;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,6 +32,13 @@ public class Storage {
             if (System.currentTimeMillis() == timeToNofification) {
                 notifier.send(startIdx + " " + (startIdx + storage.size()), 0);
                 timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;
+            }
+
+            ZMsg msg = ZMsg.recvMsg(notifier);
+
+            if (msg != null) {
+                String cmd = new String(msg.getLast().getData());
+                
             }
 
 //            // Wait for next request from client
