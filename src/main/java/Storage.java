@@ -31,7 +31,9 @@ public class Storage {
             }
 
             // Wait for next request from client
-            String string = notifier.recvStr (0); System.out.printf ("Received request: [%s]\n", string); // Do some 'work'
+            String string = notifier.recvStr (0);
+            System.out.printf ("Received request: [%s]\n", string);
+            // Do some 'work'
             Thread.sleep (1000);
             // Send reply back to client
             notifier.send ("World");
