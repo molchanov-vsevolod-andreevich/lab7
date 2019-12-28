@@ -33,13 +33,13 @@ public class Storage {
                 timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;
             }
 
-            // Wait for next request from client
-            String string = notifier.recvStr (0);
-            System.out.printf ("Received request: [%s]\n", string);
-            // Do some 'work'
-            Thread.sleep (1000);
-            // Send reply back to client
-            notifier.send ("World");
+//            // Wait for next request from client
+//            String string = notifier.recvStr (0);
+//            System.out.printf ("Received request: [%s]\n", string);
+//            // Do some 'work'
+//            Thread.sleep (1000);
+//            // Send reply back to client
+//            notifier.send ("World");
         }
         // We never get here but clean up anyhow notifier.close();
         notifier.close();
