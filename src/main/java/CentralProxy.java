@@ -11,6 +11,6 @@ public class CentralProxy {
 // Switch messages between sockets
         while (!Thread.currentThread().isInterrupted()) {
 // poll and memorize multipart detection items.poll();
-            
-    }
+                
+        }
 }
