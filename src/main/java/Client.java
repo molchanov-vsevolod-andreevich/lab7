@@ -1,3 +1,4 @@
+import org.zeromq.SocketType;
 import org.zeromq.ZMQ;
 
 public class Client {
