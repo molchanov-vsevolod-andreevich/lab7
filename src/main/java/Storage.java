@@ -13,7 +13,7 @@ public class Storage {
         ZMQ.Context context = ZMQ.context (1);
 
         // Socket to talk to server
-        ZMQ.Socket notifier = context.socket (SocketType.REP);
+        ZMQ.Socket notifier = context.socket (SocketType.DEALER);
         notifier.connect ("tcp://localhost:5560");
 
         while (!Thread.currentThread ().isInterrupted ()) {
