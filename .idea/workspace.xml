@@ -29,7 +29,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Storage">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Client" />
       <module name="chat-example" />
@@ -37,6 +37,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Storage" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Storage" />
+      <module name="chat-example" />
+      <option name="PROGRAM_PARAMETERS" value="0 10" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Storage" />
+      <item itemvalue="Application.Client" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Client" />
@@ -69,6 +81,14 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="172" y="77" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1577524754944">
+      <screen x="0" y="23" width="1440" height="822" />
+    </state>
+    <state x="172" y="77" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.822@0.23.1440.822" timestamp="1577524754944" />
+    <state x="445" y="207" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1577524743578">
+      <screen x="0" y="23" width="1440" height="822" />
+    </state>
+    <state x="445" y="207" key="#com.intellij.ide.util.TreeClassChooserDialog/0.23.1440.822@0.23.1440.822" timestamp="1577524743578" />
     <state width="1358" height="199" key="GridCell.Tab.0.bottom" timestamp="1577517591497">
       <screen x="0" y="23" width="1440" height="822" />
     </state>

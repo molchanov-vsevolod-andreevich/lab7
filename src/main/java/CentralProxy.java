@@ -21,13 +21,15 @@ public class CentralProxy {
             if (items.pollin(0)) {
                 byte[] message;
                 message = frontend.recv(0);
-                backend.send(message, more ? ZMQ.SNDMORE : 0);
+//                backend.send(message, more ? ZMQ.SNDMORE : 0);
+                System.out.println(new String(message));
             }
 
             if (items.pollin(1)) {
                 byte[] message;
                 message = backend.recv(0);
-                frontend.send(message, more ? ZMQ.SNDMORE : 0);
+//                frontend.send(message, more ? ZMQ.SNDMORE : 0);
+                System.out.println(new String(message));
             }
         }
     }
