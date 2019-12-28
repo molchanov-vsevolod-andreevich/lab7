@@ -17,6 +17,9 @@ public class CentralProxy {
         items.register(client, ZMQ.Poller.POLLIN);
         items.register(storage, ZMQ.Poller.POLLIN);
 
+        int startIdx = 0;
+        int endIdx = 0;
+
         while (!Thread.currentThread().isInterrupted()) {
             items.poll();
 
@@ -28,7 +31,10 @@ public class CentralProxy {
 
                 String commandType = split[0];
                 if (commandType.equals("GET")) {
-                    
+                    int key = Integer.parseInt(split[1]);
+                    if (key >= startIdx && key <= endIdx) {
+                        
+                    }
                 } else if (commandType.equals("SET")) {
 
                 }
@@ -40,7 +46,12 @@ public class CentralProxy {
             if (items.pollin(1)) {
                 ZMsg msg = ZMsg.recvMsg(storage);
                 String interval = new String(msg.getLast().getData());
-                System.out.println("storage: " + interval);
+
+                String[] split = interval.split(" ");
+                startIdx = Integer.parseInt(split[1]);
+                endIdx = Integer.parseInt(split[2]);
+
+                System.out.println("interval: " + startIdx + " " + endIdx);
             }
         }
     }
