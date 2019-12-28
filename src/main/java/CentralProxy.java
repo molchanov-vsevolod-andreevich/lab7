@@ -23,10 +23,13 @@ public class CentralProxy {
                     }
                 }
             } }
-            if (items.pollin(1)) { while (true) {
+            if (items.pollin(1)) {
+                while (true) {
                 message = backend.recv(0);
-                more = backend.hasReceiveMore(); frontend.send(message, more ? ZMQ.SNDMORE : 0); if(!more){
-                    break; }
+                more = backend.hasReceiveMore(); frontend.send(message, more ? ZMQ.SNDMORE : 0);
+                if(!more){
+                    break;
+                }
             } }
         }
 }
