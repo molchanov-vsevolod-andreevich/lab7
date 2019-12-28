@@ -12,15 +12,13 @@ public class CentralProxy {
 
         System.out.println("Proxy server has been launched and connected");
 
-        // Initialize poll set
         ZMQ.Poller items = context.poller (2);
         items.register(frontend, ZMQ.Poller.POLLIN);
         items.register(backend, ZMQ.Poller.POLLIN);
-        
+
         boolean more = false;
         byte[] message;
 
-        // Switch messages between sockets
         while (!Thread.currentThread().isInterrupted()) {
             // poll and memorize multipart detection items.poll();
             if (items.pollin(0)) {
