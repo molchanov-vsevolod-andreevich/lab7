@@ -17,6 +17,8 @@ public class CentralProxy {
         items.register(client, ZMQ.Poller.POLLIN);
         items.register(storage, ZMQ.Poller.POLLIN);
 
+
+
         int startIdx = 0;
         int endIdx = -1;
 
@@ -39,10 +41,10 @@ public class CentralProxy {
 //
 //                }
 //                System.out.println("first " + msg.getFirst());
-//                ZMsg resp = ZMsg.newStringMsg(cmd);
-                msg.getLast().reset(String.valueOf(msg.getFirst()));
+                ZMsg resp = ZMsg.newStringMsg(String.valueOf(msg.getFirst()), cmd);
+//                msg.getLast().reset(String.valueOf(msg.getFirst()));
 //                resp.getLast().reset(cmd);
-                msg.send(client);
+                resp.send(client);
             }
 
             if (items.pollin(1)) {
