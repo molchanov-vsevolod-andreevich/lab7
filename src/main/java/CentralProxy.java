@@ -16,7 +16,8 @@ public class CentralProxy {
             if (items.pollin(0)) {
                 while (true) {
                     message = frontend.recv(0);
-                    more = frontend.hasReceiveMore(); backend.send(message, more ? ZMQ.SNDMORE : 0);
+                    more = frontend.hasReceiveMore();
+                    backend.send(message, more ? ZMQ.SNDMORE : 0);
                     if(!more){
                         break;
                     }
