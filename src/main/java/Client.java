@@ -22,6 +22,8 @@ public class Client {
 
             requester.send(command, 0);
 
+            String reply = 
+
         }
 
         // We never get here but clean up anyhow requester.close();
