@@ -25,7 +25,7 @@ public class CentralProxy {
                 String resp = "Hie";
 //                backend.send(message, more ? ZMQ.SNDMORE : 0);
 //                System.out.println("client " + new String(message));
-                frontend.send(resp, )
+                frontend.send(resp, 0);
             }
 
             if (items.pollin(1)) {
