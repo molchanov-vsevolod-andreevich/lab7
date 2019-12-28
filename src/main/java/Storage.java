@@ -8,7 +8,7 @@ public class Storage {
     public static void main(String[] args) throws InterruptedException {
         Map<Integer, String> storage = new HashMap<>();
 
-        long timeToNofification = System.currentTimeMillis();
+        long timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;
         
         ZMQ.Context context = ZMQ.context (1);
 
@@ -17,10 +17,15 @@ public class Storage {
         notifier.connect ("tcp://localhost:5560");
 
         while (!Thread.currentThread ().isInterrupted ()) {
-        // Wait for next request from client
+
+            if (System.currentTimeMillis() == timeToNofification) {
+                notifier.send()
+            }
+
+            // Wait for next request from client
             String string = notifier.recvStr (0); System.out.printf ("Received request: [%s]\n", string); // Do some 'work'
             Thread.sleep (1000);
-        // Send reply back to client
+            // Send reply back to client
             notifier.send ("World");
         }
         // We never get here but clean up anyhow notifier.close();
