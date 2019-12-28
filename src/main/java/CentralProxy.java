@@ -29,7 +29,7 @@ public class CentralProxy {
             }
 
             if (items.pollin(1)) {
-                ZMsg msg = ZMsg.recvMsg(frontend);
+                ZMsg msg = ZMsg.recvMsg(backend);
                 String interval = new String(msg.getLast().getData(), ZMQ.CHARSET);
 //                backend.send(message, more ? ZMQ.SNDMORE : 0);
 //                System.out.println("client " + new String(message));
