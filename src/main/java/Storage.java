@@ -30,7 +30,7 @@ public class Storage {
         while (!Thread.currentThread().isInterrupted()) {
 
             if (System.currentTimeMillis() == timeToNofification) {
-                notifier.send(startIdx + " " + (startIdx + storage.size()), 0);
+                notifier.send("NOTIFY " + startIdx + " " + (startIdx + storage.size()), 0);
                 timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;
             }
 
