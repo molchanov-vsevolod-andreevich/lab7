@@ -11,6 +11,9 @@ public class Storage {
             return;
         }
 
+        int startIdx = Integer.parseInt(args[0]);
+        int endIdx = Integer.parseInt(args[1]);
+
         Map<Integer, String> storage = new HashMap<>();
 
         long timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;
@@ -24,7 +27,7 @@ public class Storage {
         while (!Thread.currentThread ().isInterrupted ()) {
 
             if (System.currentTimeMillis() == timeToNofification) {
-                notifier.send(, storage.size(), 0)
+                notifier.send(startIdx + " " +startIdx + storage.size(), 0)
             }
 
             // Wait for next request from client
