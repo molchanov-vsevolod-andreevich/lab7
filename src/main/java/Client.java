@@ -22,7 +22,9 @@ public class Client {
 
             requester.send(command, 0);
 
-            String reply = 
+            String reply = requester.recvStr (0);
+
+            System.out.println(reply);
 
         }
 
