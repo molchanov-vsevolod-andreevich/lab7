@@ -16,7 +16,7 @@ public class Client {
         while (true) {
             String command = in.nextLine();
 
-            if (command.equals("F")) {
+            if (command.equals("Q")) {
                 break;
             }
 

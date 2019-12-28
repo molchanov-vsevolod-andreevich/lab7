@@ -39,7 +39,7 @@ public class CentralProxy {
 //
 //                }
                 System.out.println("first " + msg.getFirst());
-                ZMsg resp = ZMsg.newStringMsg("");
+                ZMsg resp = ZMsg.newStringMsg(cmd);
                 resp.getLast().reset(cmd);
 //                resp.getLast().reset(cmd);
                 resp.send(client);
