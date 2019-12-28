@@ -7,7 +7,9 @@ public class Client {
     public static void main(String[] args) {
         ZMQ.Context context = ZMQ.context(1);
         // Socket to talk to server
-        ZMQ.Socket requester = context.socket(SocketType.REQ); requester.connect("tcp://localhost:5559"); System.out.println("launch and connect client.");
+        ZMQ.Socket requester = context.socket(SocketType.REQ);
+        requester.connect("tcp://localhost:5559");
+        System.out.println("launch and connect client.");
 
         Scanner in = new Scanner(System.in);
 
@@ -21,7 +23,7 @@ public class Client {
             }
 
             requester.send(command, 0);
-            
+
         }
 
         // We never get here but clean up anyhow requester.close();
