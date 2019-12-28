@@ -19,7 +19,7 @@ public class Storage {
         while (!Thread.currentThread ().isInterrupted ()) {
 
             if (System.currentTimeMillis() == timeToNofification) {
-                notifier.send(0, storage.size(), 0)
+                notifier.send(, storage.size(), 0)
             }
 
             // Wait for next request from client
