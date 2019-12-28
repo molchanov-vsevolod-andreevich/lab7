@@ -6,33 +6,29 @@ public class CentralProxy {
     public static void main(String[] args) {
         ZMQ.Context context = ZMQ.context(1);
 
-        ZMQ.Socket frontend = context.socket(SocketType.ROUTER); // client
-        ZMQ.Socket backend = context.socket(SocketType.ROUTER); // storage
-        frontend.bind("tcp://localhost:5559");
-        backend.bind("tcp://localhost:5560");
+        ZMQ.Socket client = context.socket(SocketType.ROUTER); // client
+        ZMQ.Socket storage = context.socket(SocketType.ROUTER); // storage
+        client.bind("tcp://localhost:5559");
+        storage.bind("tcp://localhost:5560");
 
         System.out.println("Proxy server has been launched and connected");
 
         ZMQ.Poller items = context.poller (2);
-        items.register(frontend, ZMQ.Poller.POLLIN);
-        items.register(backend, ZMQ.Poller.POLLIN);
+        items.register(client, ZMQ.Poller.POLLIN);
+        items.register(storage, ZMQ.Poller.POLLIN);
 
         while (!Thread.currentThread().isInterrupted()) {
             items.poll();
-            // poll and memorize multipart detection items.poll();
+
             if (items.pollin(0)) {
-                ZMsg msg = ZMsg.recvMsg(frontend);
-                String cmd = new String(msg.getLast().getData(), ZMQ.CHARSET);
-//                backend.send(message, more ? ZMQ.SNDMORE : 0);
-//                System.out.println("client " + new String(message));
-                msg.send(frontend);
+                ZMsg msg = ZMsg.recvMsg(client);
+                String cmd = new String(msg.getLast().getData());
+                msg.send(client);
             }
 
             if (items.pollin(1)) {
-                ZMsg msg = ZMsg.recvMsg(backend);
-                String interval = new String(msg.getLast().getData(), ZMQ.CHARSET);
-//                backend.send(message, more ? ZMQ.SNDMORE : 0);
-//                System.out.println("client " + new String(message));
+                ZMsg msg = ZMsg.recvMsg(storage);
+                String interval = new String(msg.getLast().getData());
                 System.out.println("storage: " + interval);
             }
         }
