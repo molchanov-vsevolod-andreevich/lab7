@@ -13,7 +13,9 @@ public class Client {
 
         System.out.println("Client has been launched. Enter messages");
 
-        
+        while (true) {
+            String message 
+        }
 
         // We never get here but clean up anyhow requester.close();
         context.term();
