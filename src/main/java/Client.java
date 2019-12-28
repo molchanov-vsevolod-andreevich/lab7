@@ -14,7 +14,11 @@ public class Client {
         System.out.println("Client has been launched. Enter messages");
 
         while (true) {
-            String message 
+            String command = in.nextLine();
+
+            if (command.isEmpty()) {
+                break;
+            }
         }
 
         // We never get here but clean up anyhow requester.close();
