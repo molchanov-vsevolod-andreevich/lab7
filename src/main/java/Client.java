@@ -9,11 +9,9 @@ public class Client {
         // Socket to talk to server
         ZMQ.Socket requester = context.socket(SocketType.REQ);
         requester.connect("tcp://localhost:5559");
-        System.out.println("launch and connect client.");
+        System.out.println("Сlient has been launched and connected");
 
         Scanner in = new Scanner(System.in);
-
-        System.out.println("Client has been launched. Enter messages");
 
         while (true) {
             String command = in.nextLine();
