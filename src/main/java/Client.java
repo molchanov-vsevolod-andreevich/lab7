@@ -13,6 +13,8 @@ public class Client {
 
         System.out.println("Client has been launched. Enter messages");
 
+        
+
         // We never get here but clean up anyhow requester.close();
         context.term();
     }
