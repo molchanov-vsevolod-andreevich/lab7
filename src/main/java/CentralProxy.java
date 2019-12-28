@@ -23,7 +23,9 @@ public class CentralProxy {
             if (items.pollin(0)) {
                 ZMsg msg = ZMsg.recvMsg(client);
                 String cmd = new String(msg.getLast().getData());
-                msg.send(client);
+                
+                ZMsg resp = ZMsg.newStringMsg(cmd);
+                resp.send(client);
             }
 
             if (items.pollin(1)) {
