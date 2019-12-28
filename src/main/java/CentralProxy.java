@@ -38,9 +38,10 @@ public class CentralProxy {
 //                } else if (commandType.equals("SET")) {
 //
 //                }
-                ZMsg.newStringMsg(cmd).send(client);
+                ZMsg resp = ZMsg.newStringMsg("");
+                resp.getLast().reset(cmd);
 //                resp.getLast().reset(cmd);
-//                resp.send(client);
+                resp.send(client);
             }
 
             if (items.pollin(1)) {
