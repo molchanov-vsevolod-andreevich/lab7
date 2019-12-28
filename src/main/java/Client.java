@@ -19,6 +19,8 @@ public class Client {
             if (command.isEmpty()) {
                 break;
             }
+
+            
         }
 
         // We never get here but clean up anyhow requester.close();
