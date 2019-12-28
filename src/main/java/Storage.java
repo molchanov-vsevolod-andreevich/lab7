@@ -26,7 +26,7 @@ public class Storage {
 
         System.out.println("Storage has been launched and connected");
 
-        while (!Thread.currentThread ().isInterrupted ()) {
+        while (!Thread.currentThread().isInterrupted()) {
 
             if (System.currentTimeMillis() == timeToNofification) {
                 notifier.send(startIdx + " " + (startIdx + storage.size()), 0);
