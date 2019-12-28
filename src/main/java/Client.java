@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Client {
     public static void main(String[] args) {
         ZMQ.Context context = ZMQ.context(1);
-        
+
         // Socket to talk to server
         ZMQ.Socket requester = context.socket(SocketType.REQ);
         requester.connect("tcp://localhost:5559");
