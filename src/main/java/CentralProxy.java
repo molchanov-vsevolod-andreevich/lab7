@@ -23,7 +23,7 @@ public class CentralProxy {
             if (items.pollin(0)) {
                 ZMsg msg = ZMsg.recvMsg(client);
                 String cmd = new String(msg.getLast().getData());
-                
+
                 ZMsg resp = ZMsg.newStringMsg(cmd);
                 resp.send(client);
             }
