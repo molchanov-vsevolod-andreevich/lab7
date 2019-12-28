@@ -22,14 +22,14 @@ public class CentralProxy {
                 byte[] message;
                 message = frontend.recv(0);
 //                backend.send(message, more ? ZMQ.SNDMORE : 0);
-                System.out.println(new String(message));
+                System.out.println("client " + new String(message));
             }
 
             if (items.pollin(1)) {
                 byte[] message;
                 message = backend.recv(0);
 //                frontend.send(message, more ? ZMQ.SNDMORE : 0);
-                System.out.println(new String(message));
+                System.out.println("storage" + new String(message));
             }
         }
     }

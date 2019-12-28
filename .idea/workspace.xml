@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d7486c8-95fe-40bd-bc0e-63bd7d714371" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CentralProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CentralProxy.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,7 +29,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
   </component>
-  <component name="RunManager" selected="Application.Storage">
+  <component name="RunManager" selected="Multirun.Unnamed">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Client" />
       <module name="chat-example" />
@@ -53,10 +52,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Unnamed" type="Multirun" factoryName="Multirun" separateTabs="true" startOneByOne="true" markFailedProcess="true" hideSuccessProcess="false" delayTime="0">
+      <runConfiguration name="Storage" type="Application" />
+      <runConfiguration name="Proxy" type="Application" />
+      <runConfiguration name="Client" type="Application" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Application.Storage" />
       <item itemvalue="Application.Proxy" />
       <item itemvalue="Application.Client" />
+      <item itemvalue="Multirun.Unnamed" />
     </list>
     <recent_temporary>
       <list>
@@ -90,29 +96,29 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="172" y="77" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1577524776760">
+    <state x="172" y="77" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1577525170987">
       <screen x="0" y="23" width="1440" height="822" />
     </state>
-    <state x="172" y="77" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.822@0.23.1440.822" timestamp="1577524776760" />
+    <state x="172" y="77" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.822@0.23.1440.822" timestamp="1577525170987" />
     <state x="445" y="207" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1577524771144">
       <screen x="0" y="23" width="1440" height="822" />
     </state>
     <state x="445" y="207" key="#com.intellij.ide.util.TreeClassChooserDialog/0.23.1440.822@0.23.1440.822" timestamp="1577524771144" />
-    <state width="1358" height="198" key="GridCell.Tab.0.bottom" timestamp="1577524852304">
+    <state width="1358" height="198" key="GridCell.Tab.0.bottom" timestamp="1577525127752">
       <screen x="0" y="23" width="1440" height="822" />
     </state>
-    <state width="1358" height="198" key="GridCell.Tab.0.bottom/0.23.1440.822@0.23.1440.822" timestamp="1577524852304" />
-    <state width="1358" height="198" key="GridCell.Tab.0.center" timestamp="1577524852303">
+    <state width="1358" height="198" key="GridCell.Tab.0.bottom/0.23.1440.822@0.23.1440.822" timestamp="1577525127752" />
+    <state width="1358" height="198" key="GridCell.Tab.0.center" timestamp="1577525127751">
       <screen x="0" y="23" width="1440" height="822" />
     </state>
-    <state width="1358" height="198" key="GridCell.Tab.0.center/0.23.1440.822@0.23.1440.822" timestamp="1577524852303" />
-    <state width="1358" height="198" key="GridCell.Tab.0.left" timestamp="1577524852302">
+    <state width="1358" height="198" key="GridCell.Tab.0.center/0.23.1440.822@0.23.1440.822" timestamp="1577525127751" />
+    <state width="1358" height="198" key="GridCell.Tab.0.left" timestamp="1577525127750">
       <screen x="0" y="23" width="1440" height="822" />
     </state>
-    <state width="1358" height="198" key="GridCell.Tab.0.left/0.23.1440.822@0.23.1440.822" timestamp="1577524852302" />
-    <state width="1358" height="198" key="GridCell.Tab.0.right" timestamp="1577524852303">
+    <state width="1358" height="198" key="GridCell.Tab.0.left/0.23.1440.822@0.23.1440.822" timestamp="1577525127750" />
+    <state width="1358" height="198" key="GridCell.Tab.0.right" timestamp="1577525127751">
       <screen x="0" y="23" width="1440" height="822" />
     </state>
-    <state width="1358" height="198" key="GridCell.Tab.0.right/0.23.1440.822@0.23.1440.822" timestamp="1577524852303" />
+    <state width="1358" height="198" key="GridCell.Tab.0.right/0.23.1440.822@0.23.1440.822" timestamp="1577525127751" />
   </component>
 </project>
