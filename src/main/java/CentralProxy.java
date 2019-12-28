@@ -27,19 +27,19 @@ public class CentralProxy {
                 ZMsg msg = ZMsg.recvMsg(client);
                 String cmd = new String(msg.getLast().getData());
 
-                String[] split = cmd.split(" ");
-
-                String commandType = split[0];
-                if (commandType.equals("GET")) {
-                    int key = Integer.parseInt(split[1]);
-                    if (key >= startIdx && key <= endIdx) {
-                        
-                    }
-                } else if (commandType.equals("SET")) {
-
-                }
-
-                msg.getLast().reset(cmd);
+//                String[] split = cmd.split(" ");
+//
+//                String commandType = split[0];
+//                if (commandType.equals("GET")) {
+//                    int key = Integer.parseInt(split[1]);
+//                    if (key >= startIdx && key <= endIdx) {
+//
+//                    }
+//                } else if (commandType.equals("SET")) {
+//
+//                }
+                ZMsg resp = ZMsg.newStringMsg(cmd);
+                resp.getLast().reset(cmd);
                 msg.send(client);
             }
 
