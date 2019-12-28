@@ -38,7 +38,13 @@ public class Storage {
 
             if (msg != null) {
                 String cmd = new String(msg.getLast().getData());
-                
+
+                String[] split = cmd.split(" ");
+
+                String commandType = split[0];
+                if (commandType.equals("") ) {
+
+                }
             }
 
 //            // Wait for next request from client
