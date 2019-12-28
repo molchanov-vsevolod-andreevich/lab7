@@ -18,7 +18,7 @@ public class CentralProxy {
         items.register(storage, ZMQ.Poller.POLLIN);
 
         int startIdx = 0;
-        int endIdx = 0;
+        int endIdx = -1;
 
         while (!Thread.currentThread().isInterrupted()) {
             items.poll();
