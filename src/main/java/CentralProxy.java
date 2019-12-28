@@ -17,6 +17,7 @@ public class CentralProxy {
         items.register(backend, ZMQ.Poller.POLLIN);
 
         while (!Thread.currentThread().isInterrupted()) {
+            items.poll();
             // poll and memorize multipart detection items.poll();
             if (items.pollin(0)) {
                 byte[] message;
