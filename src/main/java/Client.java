@@ -1,6 +1,8 @@
+import org.zeromq.ZMQ.Context;
+
 public class Client {
     public static void main(String[] args) {
-        Context context = ZMQ.context(1);
+        Context context = context(1);
         // Socket to talk to server
         Socket requester = context.socket(SocketType.REQ); requester.connect("tcp://localhost:5559"); System.out.println("launch and connect client.");
         for (int request_nbr = 0; request_nbr < 10; request_nbr++) {
