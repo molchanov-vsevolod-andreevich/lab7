@@ -20,7 +20,7 @@ public class Client {
                 break;
             }
 
-            requester.
+            requester.send(command);
         }
 
         // We never get here but clean up anyhow requester.close();
