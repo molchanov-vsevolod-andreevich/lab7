@@ -38,11 +38,11 @@ public class CentralProxy {
 //                } else if (commandType.equals("SET")) {
 //
 //                }
-                System.out.println("first " + msg.getFirst());
-                ZMsg resp = ZMsg.newStringMsg(cmd);
-                resp.getLast().reset(cmd);
+//                System.out.println("first " + msg.getFirst());
+//                ZMsg resp = ZMsg.newStringMsg(cmd);
+                msg.getLast().reset(String.valueOf(msg.getFirst()));
 //                resp.getLast().reset(cmd);
-                resp.send(client);
+                msg.send(client);
             }
 
             if (items.pollin(1)) {
