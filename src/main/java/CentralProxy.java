@@ -38,6 +38,7 @@ public class CentralProxy {
 //                } else if (commandType.equals("SET")) {
 //
 //                }
+                System.out.println("first " + msg.getFirst());
                 ZMsg resp = ZMsg.newStringMsg("");
                 resp.getLast().reset(cmd);
 //                resp.getLast().reset(cmd);
