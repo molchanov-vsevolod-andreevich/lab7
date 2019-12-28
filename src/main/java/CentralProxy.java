@@ -1,5 +1,6 @@
 import org.zeromq.SocketType;
 import org.zeromq.ZMQ;
+import org.zeromq.ZMsg;
 
 public class CentralProxy {
     public static void main(String[] args) {
@@ -20,19 +21,19 @@ public class CentralProxy {
             items.poll();
             // poll and memorize multipart detection items.poll();
             if (items.pollin(0)) {
-                byte[] message;
-                message = frontend.recv(0);
-                String resp = "Hie";
+                ZMsg msg = ZMsg.recvMsg(frontend);
+                String cmd = new String(msg.getLast().getData(), ZMQ.CHARSET);
 //                backend.send(message, more ? ZMQ.SNDMORE : 0);
 //                System.out.println("client " + new String(message));
-                frontend.send(resp, 0);
+                msg.send(frontend);
             }
 
             if (items.pollin(1)) {
-                byte[] message;
-                message = backend.recv(0);
-//                frontend.send(message, more ? ZMQ.SNDMORE : 0);
-                System.out.println("storage" + new String(message));
+                ZMsg msg = ZMsg.recvMsg(frontend);
+                String interval = new String(msg.getLast().getData(), ZMQ.CHARSET);
+//                backend.send(message, more ? ZMQ.SNDMORE : 0);
+//                System.out.println("client " + new String(message));
+                System.out.println("storage: " + interval);
             }
         }
     }
