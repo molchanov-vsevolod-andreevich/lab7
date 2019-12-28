@@ -24,6 +24,7 @@ public class Client {
         }
 
         // We never get here but clean up anyhow requester.close();
+        requester.close();
         context.term();
     }
 }
