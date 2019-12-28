@@ -24,10 +24,13 @@ public class Storage {
         ZMQ.Socket notifier = context.socket (SocketType.DEALER);
         notifier.connect ("tcp://localhost:5560");
 
+        System.out.println("Storage has been launched and connected");
+
         while (!Thread.currentThread ().isInterrupted ()) {
 
             if (System.currentTimeMillis() == timeToNofification) {
-                notifier.send(startIdx + " " +startIdx + storage.size(), 0)
+                notifier.send(startIdx + " " + (startIdx + storage.size()), 0);
+                timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;
             }
 
             // Wait for next request from client
