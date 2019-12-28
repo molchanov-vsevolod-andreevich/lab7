@@ -31,4 +31,6 @@ class ZeroMQAppConstants {
     // Other constants
     static final Duration TIMEOUT = Duration.ofMillis(5000);
     static final int SERVER_PORT_IDX_IN_ARGS = 0;
+
+    static final long NOTIFICATION_TIMEOUT = 3000;
 }

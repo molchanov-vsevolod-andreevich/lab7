@@ -8,7 +8,7 @@ public class Storage {
     public static void main(String[] args) throws InterruptedException {
         Map<Integer, String> storage = new HashMap<>();
 
-        long notificationTime = System.currentTimeMillis()
+        long timeToNofification = System.currentTimeMillis();
         
         ZMQ.Context context = ZMQ.context (1);
 
