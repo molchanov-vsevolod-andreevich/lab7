@@ -28,9 +28,9 @@ public class CentralProxy {
 
                 String commandType = split[0];
                 if (commandType.equals("GET")) {
-
-                } else if (commandType.equals("SET")) {
                     
+                } else if (commandType.equals("SET")) {
+
                 }
 
                 msg.getLast().reset(cmd);
