@@ -4,16 +4,19 @@ import org.zeromq.ZMQ;
 public class CentralProxy {
     public static void main(String[] args) {
         ZMQ.Context context = ZMQ.context(1);
-        ZMQ.Socket frontend = context.socket(SocketType.ROUTER);
-        ZMQ.Socket backend = context.socket(SocketType.DEALER);
-        frontend.bind("tcp://*:5559");
-        backend.bind("tcp://*:5560");
-        System.out.println("launch and connect broker.");
+
+        ZMQ.Socket frontend = context.socket(SocketType.ROUTER); // client
+        ZMQ.Socket backend = context.socket(SocketType.ROUTER); // storage
+        frontend.bind("tcp://localhost:5559");
+        backend.bind("tcp://localhost:5560");
+
+        System.out.println("Proxy server has been launched and connected");
 
         // Initialize poll set
         ZMQ.Poller items = context.poller (2);
         items.register(frontend, ZMQ.Poller.POLLIN);
         items.register(backend, ZMQ.Poller.POLLIN);
+        
         boolean more = false;
         byte[] message;
 
