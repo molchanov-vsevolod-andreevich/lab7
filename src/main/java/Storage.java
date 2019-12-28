@@ -7,7 +7,8 @@ import java.util.Map;
 public class Storage {
     public static void main(String[] args) throws InterruptedException {
         if (args.length < 2) {
-            System.err.println("Not enough arguments. Run program with arguments [start]");
+            System.err.println("Not enough arguments. Run program with arguments [startIdx] [endIdx]");
+            return;
         }
 
         Map<Integer, String> storage = new HashMap<>();
