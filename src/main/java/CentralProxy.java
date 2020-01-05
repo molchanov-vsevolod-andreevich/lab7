@@ -47,10 +47,11 @@ public class CentralProxy {
 //                resp.getLast().reset(cmd);
 //                msg.getLast().reset(String.valueOf(msg.getFirst()));
 //                resp.getLast().reset(cmd);
-                ZFrame resp = msg.unwrap();
-                resp.send(client);
-//                clientAddress.send();
+//                ZFrame resp = msg.unwrap();
 //                resp.send(client);
+//                clientAddress.send();
+                msg.getLast().reset(cmd);
+                msg.send(client);
             }
 
             if (items.pollin(1)) {
