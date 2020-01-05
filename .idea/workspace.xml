@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d7486c8-95fe-40bd-bc0e-63bd7d714371" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CentralProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CentralProxy.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,7 +29,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
   </component>
-  <component name="RunManager" selected="Application.Client2">
+  <component name="RunManager" selected="Multirun.Unnamed">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Client" />
       <module name="chat-example" />
@@ -64,6 +63,7 @@
       <runConfiguration name="Storage" type="Application" />
       <runConfiguration name="Proxy" type="Application" />
       <runConfiguration name="Client" type="Application" />
+      <runConfiguration name="Client2" type="Application" />
       <method v="2" />
     </configuration>
     <list>
@@ -105,10 +105,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="172" y="77" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1578230181074">
+    <state x="172" y="77" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1578230195101">
       <screen x="0" y="23" width="1440" height="822" />
     </state>
-    <state x="172" y="77" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.822@0.23.1440.822" timestamp="1578230181074" />
+    <state x="172" y="77" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.822@0.23.1440.822" timestamp="1578230195101" />
     <state x="445" y="207" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1578230179082">
       <screen x="0" y="23" width="1440" height="822" />
     </state>
