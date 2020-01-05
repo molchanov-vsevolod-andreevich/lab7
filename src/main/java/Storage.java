@@ -6,16 +6,28 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Storage {
+
+    private static int startIdx;
+    private static int endIdx;
+    private static Map<Integer, String> storage = new HashMap<>();
+
+    static void setInterval(String[] args) {
+        startIdx = Integer.parseInt(args[0]);
+        endIdx = Integer.parseInt(args[1]);
+    }
+
     public static void main(String[] args) throws InterruptedException {
         if (args.length < 2) {
             System.err.println("Not enough arguments. Run program with arguments [startIdx] [endIdx]");
             return;
         }
 
-        int startIdx = Integer.parseInt(args[0]);
-        int endIdx = Integer.parseInt(args[1]);
+        setInterval(args);
 
-        Map<Integer, String> storage = new HashMap<>();
+
+        if (args.length < 2 + endIdx - startIdx) {
+
+        }
 
         long timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;
         
