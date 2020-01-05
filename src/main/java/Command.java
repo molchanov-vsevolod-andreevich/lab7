@@ -16,6 +16,8 @@ public class Command {
         switch (commandName) {
             case "NOTIFY":
                 commandType = 1;
+                break;
+                
         }
     }
 
