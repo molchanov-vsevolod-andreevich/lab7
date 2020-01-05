@@ -33,7 +33,8 @@ public class Command {
     }
 
     public Command(String commandType, String args) {
-        
+        this.commandType = Integer.parseInt(commandType);
+        this.args = args;
     }
 
     private boolean isInteger(String s) {
