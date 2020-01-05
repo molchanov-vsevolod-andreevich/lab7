@@ -67,11 +67,13 @@ public class Storage {
                     int key = Integer.parseInt(command.getArgs());
                     String value = storage.get(key);
 
-                    msg.getLast().reset(value);
+                    Command resp = new Command(Constants.RESPONSE_COMMAND_TYPE, value);
+
+                    msg.getLast().reset(resp.toString());
                     msg.send(notifier);
                 }
 
-                if (command.getCommandType() == Constants.GET_COMMAND_TYPE) {
+                if (command.getCommandType() == Constants.PUT_COMMAND_TYPE) {
                     String[] commandArgs = command.getArgs().split(Constants.DELIMITER, Constants.LIMIT);
                     int key = Integer.parseInt(commandArgs[0]);
                     String newValue = commandArgs[1];

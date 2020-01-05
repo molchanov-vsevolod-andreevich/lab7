@@ -17,6 +17,7 @@ class Constants {
     static final int PUT_COMMAND_TYPE = 2;
     static final int GET_COMMAND_TYPE = 3;
     static final int QUIT_COMMAND_TYPE = 4;
+    static final int RESPONSE_COMMAND_TYPE = 5;
 
     // HTTP query parameters
     static final String URL_PARAMETER_NAME = "url";
