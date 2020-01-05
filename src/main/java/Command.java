@@ -17,7 +17,7 @@ public class Command {
             case "NOTIFY":
                 commandType = 1;
                 break;
-                
+            case     
         }
     }
 
