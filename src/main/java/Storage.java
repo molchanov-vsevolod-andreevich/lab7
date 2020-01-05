@@ -16,6 +16,13 @@ public class Storage {
         endIdx = Integer.parseInt(args[1]);
     }
 
+    static void setValues(String[] args) {
+        int argsLen = args.length;
+        for (int i = 2, j = 0; i < argsLen; i++, j++) {
+            storage.put(startIdx + j, args[i]);
+        }
+    }
+
     public static void main(String[] args) throws InterruptedException {
         if (args.length < 2) {
             System.err.println(Constants.NOT_ENOUGH_ARGS_ERROR_MESSAGE);
@@ -28,6 +35,10 @@ public class Storage {
             System.err.println(Constants.NOT_ENOUGH_ARGS_ERROR_MESSAGE);
             return;
         }
+
+        setValues(args);
+
+        System.out.println(storage);
 
         long timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;
         
