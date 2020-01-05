@@ -18,14 +18,15 @@ public class Storage {
 
     public static void main(String[] args) throws InterruptedException {
         if (args.length < 2) {
-            System.err.println("Not enough arguments. Run program with arguments [startIdx] [endIdx]");
+            System.err.println(Constants.NOT_ENOUGH_ARGS_ERROR_MESSAGE);
             return;
         }
 
         setInterval(args);
 
-        if (args.length < 2 + endIdx - startIdx) {
-
+        if (args.length != 2 + endIdx - startIdx + 1) {
+            System.err.println(Constants.NOT_ENOUGH_ARGS_ERROR_MESSAGE);
+            return;
         }
 
         long timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;

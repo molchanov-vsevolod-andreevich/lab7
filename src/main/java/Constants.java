@@ -19,7 +19,8 @@ class Constants {
     // Messages
     static final String START_MESSAGE = "start!";
     static final String START_SERVER_MESSAGE = "Server online at http://localhost:8080/\nPress RETURN to stop...\n";
-    static final String NOT_ENOUGH_ARGS_ERROR_MESSAGE = "Not enough arguments. Run program with argument [serverPort]";
+    static final String NOT_ENOUGH_ARGS_ERROR_MESSAGE = "Not enough arguments. Run program with arguments [startIdx] [endIdx] " +
+            "[value1] [value2] ... [valueN], where N = endIdx - startIdx + 1";
     static final String REDIRECT_MESSAGE = "Redirect to ";
     static final String FETCH_MESSAGE = "fetch ";
     static final String WATCHER_MESSAGE = "Servers list has been updated";
