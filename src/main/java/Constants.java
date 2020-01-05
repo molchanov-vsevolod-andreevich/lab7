@@ -9,7 +9,8 @@ class Constants {
             "[value1] [value2] ... [valueN], where N = endIdx - startIdx + 1";
     static final String INVALID_COMMAND_MESSAGE = "Invalid command or arguments. Use following commands:\n" +
             "\tPUT [index] [value]\n" +
-            "\tGET [index]";
+            "\tGET [index]\n" +
+            "\tQ for quit";
 
     // Command Types
     static final int INVALID_COMMAND_TYPE = 0;

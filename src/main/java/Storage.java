@@ -24,7 +24,7 @@ public class Storage {
         }
     }
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         if (args.length < 2) {
             System.err.println(Constants.NOT_ENOUGH_ARGS_ERROR_MESSAGE);
             return;
@@ -41,7 +41,6 @@ public class Storage {
         
         ZMQ.Context context = ZMQ.context (1);
 
-        // Socket to talk to server
         ZMQ.Socket notifier = context.socket(SocketType.DEALER);
         notifier.connect ("tcp://localhost:5560");
 
@@ -83,7 +82,6 @@ public class Storage {
             }
         }
 
-        // We never get here but clean up anyhow notifier.close();
         notifier.close();
         context.term();
     }
