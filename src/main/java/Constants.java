@@ -1,20 +1,8 @@
 import java.time.Duration;
 
 class Constants {
-    // Actors constants
-    static final String ACTOR_SYSTEM_NAME = "routes";
-    static final String CACHE_ACTOR_NAME = "cacheActor";
-
     // Server constants
     static final String HOST = "localhost";
-
-    // Zookeeper constants
-    static final String ZOOKEEPER_PORT = "2181";
-    static final String ZOOKEEPER_SERVER = "127.0.0.1";
-    static final int ZOOKEEPER_SESSION_TIMEOUT = 5000;
-    static final String SERVERS_NODE = "/servers";
-    static final String SERVERS_NODES_PATH = SERVERS_NODE + "/";
-    static final String SERVER_NODE = SERVERS_NODES_PATH + "s";
 
     // Messages
     static final String START_MESSAGE = "start!";
@@ -24,6 +12,13 @@ class Constants {
     static final String REDIRECT_MESSAGE = "Redirect to ";
     static final String FETCH_MESSAGE = "fetch ";
     static final String WATCHER_MESSAGE = "Servers list has been updated";
+
+    // Command Types
+    static final int INVALID_COMMAND_TYPE = 0;
+    static final int NOTIFY_COMMAND_TYPE = 1;
+    static final int PUT_COMMAND_TYPE = 2;
+    static final int GET_COMMAND_TYPE = 3;
+    static final int QUIT_COMMAND_TYPE = 4;
 
     // HTTP query parameters
     static final String URL_PARAMETER_NAME = "url";
