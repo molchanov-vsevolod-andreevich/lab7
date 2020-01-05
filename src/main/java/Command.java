@@ -8,7 +8,7 @@ public class Command {
         String commandName = splittedCmd[0];
         switch (commandName) {
             case "NOTIFY":
-                
+
         }
     }
 
