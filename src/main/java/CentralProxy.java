@@ -41,11 +41,12 @@ public class CentralProxy {
 //
 //                }
 //                System.out.println("first " + msg.getFirst());
-                ZMsg resp = ZMsg.newStringMsg();
-                resp.getFirst().reset(msg.getFirst());
-                resp.getLast().reset(cmd);
+//                ZMsg resp = ZMsg.newStringMsg();
+//                resp.getFirst().reset(msg.getFirst());
+//                resp.getLast().reset(cmd);
 //                msg.getLast().reset(String.valueOf(msg.getFirst()));
 //                resp.getLast().reset(cmd);
+//                
                 resp.send(client);
             }
 
