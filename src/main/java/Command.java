@@ -24,9 +24,12 @@ public class Command {
         }
     }
 
-    private isIndex() {
-        
-    }
+    private boolean isIndex(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch(Exception e) {
+            return false;
+        }
 
     public int getCommandType() {
         return commandType;
