@@ -5,6 +5,13 @@ import java.util.Scanner;
 
 public class Client {
     public static void main(String[] args) {
+
+        String s = "PUT 0 hey";
+        String[] splittedS = s.split(" ", 1);
+        for (String ss : splittedS) {
+            System.out.println(ss);
+        }
+
         ZMQ.Context context = ZMQ.context(1);
 
         ZMQ.Socket requester = context.socket(SocketType.REQ);
@@ -16,18 +23,20 @@ public class Client {
         while (true) {
             Command command = new Command(in.nextLine());
 
-            if (command.getCommandType() == Constants.INVALID_COMMAND_TYPE) {
+            int commandType = command.getCommandType();
+
+            if (commandType == Constants.INVALID_COMMAND_TYPE || commandType == Constants.NOTIFY_COMMAND_TYPE) {
                 System.out.println(Constants.INVALID_COMMAND_MESSAGE);
                 continue;
             }
 
-            if (command.getCommandType() == Constants.QUIT_COMMAND_TYPE) {
+            if (commandType == Constants.QUIT_COMMAND_TYPE) {
                 break;
             }
 
             requester.send(command.toString(), 0);
 
-            String reply = requester.recvStr (0);
+            String reply = requester.recvStr(0);
 
             System.out.println(reply);
 
