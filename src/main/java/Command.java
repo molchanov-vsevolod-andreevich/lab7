@@ -24,6 +24,8 @@ public class Command {
         }
     }
 
+    private 
+
     public int getCommandType() {
         return commandType;
     }
