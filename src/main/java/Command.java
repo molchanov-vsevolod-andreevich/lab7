@@ -1,3 +1,3 @@
-public class Commands {
-
+public class Command {
+    
 }
