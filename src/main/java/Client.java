@@ -17,7 +17,7 @@ public class Client {
             Command command = new Command(in.nextLine());
 
             if (command.getCommandType() == Constants.INVALID_COMMAND_TYPE) {
-                System.out.println();
+                System.out.println(Constants.INVALID_COMMAND_MESSAGE);
                 continue;
             }
 

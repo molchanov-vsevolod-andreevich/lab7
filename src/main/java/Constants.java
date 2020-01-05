@@ -7,8 +7,9 @@ class Constants {
     // Messages
     static final String NOT_ENOUGH_ARGS_ERROR_MESSAGE = "Not enough arguments. Run program with arguments [startIdx] [endIdx] " +
             "[value1] [value2] ... [valueN], where N = endIdx - startIdx + 1";
-    static final String INVALID_COMMAND_MESSAGE = "Invalid command or arguments. Use following commands:" +
-            "";
+    static final String INVALID_COMMAND_MESSAGE = "Invalid command or arguments. Use following commands:\n" +
+            "\tPUT [index] [value]" +
+            "\tGET [index]";
 
     // Command Types
     static final int INVALID_COMMAND_TYPE = 0;
