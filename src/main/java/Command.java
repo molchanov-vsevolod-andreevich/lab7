@@ -24,7 +24,9 @@ public class Command {
         }
     }
 
-    private 
+    private isIndex() {
+        
+    }
 
     public int getCommandType() {
         return commandType;
