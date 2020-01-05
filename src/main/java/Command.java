@@ -31,6 +31,11 @@ public class Command {
         args = commandTypeAndArgs[1];
     }
 
+    public Command(int commandType, String args) {
+        this.commandType = commandType;
+        this.args = args;
+    }
+
     private boolean isInteger(String s) {
         try {
             Integer.parseInt(s);
