@@ -1,8 +1,8 @@
 public class Command {
 
-    private static final int NOTIFY_TYPE = 1;
-    private static final int NOTIFY_TYPE = 1;
-    private static final int NOTIFY_TYPE = 1;
+    private static final int NOTIFY_COMMAND_TYPE = 1;
+    private static final int _COMMAND_TYPE = 1;
+    private static final int NOTIFY_COMMAND_TYPE = 1;
 
     private int commandType;
     private String args;
