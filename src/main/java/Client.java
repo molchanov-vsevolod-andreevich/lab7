@@ -14,13 +14,18 @@ public class Client {
         Scanner in = new Scanner(System.in);
 
         while (true) {
-            String command = in.nextLine();
+            Command command = new Command(in.nextLine());
 
-            if (command.equals("Q")) {
+            if (command.getCommandType() == Constants.INVALID_COMMAND_TYPE) {
+                System.out.println();
+                continue;
+            }
+
+            if (command.getCommandType() == Constants.QUIT_COMMAND_TYPE) {
                 break;
             }
 
-            requester.send(command, 0);
+            requester.send(command.toString(), 0);
 
             String reply = requester.recvStr (0);
 

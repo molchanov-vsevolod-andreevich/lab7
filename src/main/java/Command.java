@@ -4,35 +4,23 @@ public class Command {
     private String args;
 
     public Command(String cmd) {
-        String[] splittedCmd = cmd.split(" ");
+        String[] splittedCmd = cmd.split(Constants.DELIMITER);
 
         String commandName = splittedCmd[0];
+
         if (commandName.equals("NOTIFY") && splittedCmd.length < 3) {
-
+            commandType = Constants.INVALID_COMMAND_TYPE;
+            args = splittedCmd[1] + " " + splittedCmd[2];
         } else if (commandName.equals("PUT") && splittedCmd.length < 3) {
-
+            commandType = Constants.PUT_COMMAND_TYPE;
+            args = splittedCmd[1] + " " + splittedCmd[2];
+        } else if (commandName.equals("GET") && splittedCmd.length < 2) {
+            commandType = Constants.GET_COMMAND_TYPE;
+            args = splittedCmd[1];
+        } else if (commandName.equals("Q") && splittedCmd.length > 1) {
+            commandType = Constants.QUIT_COMMAND_TYPE;
         } else {
-
-        }
-        switch (commandName) {
-            case "NOTIFY" && splittedCmd.length < 3:
-                if () {
-                    commandType = Constants.INVALID_COMMAND_TYPE;
-                }
-                commandType = Constants.NOTIFY_COMMAND_TYPE;
-                break;
-            case "PUT":
-                commandType = Constants.PUT_COMMAND_TYPE;
-                break;
-            case "GET":
-                commandType = Constants.GET_COMMAND_TYPE;
-                break;
-            case "Q":
-                commandType = Constants.QUIT_COMMAND_TYPE;
-                break;
-            default:
-                commandType = Constants.INVALID_COMMAND_TYPE;
-                break;
+            commandType = Constants.INVALID_COMMAND_TYPE;
         }
     }
 
@@ -42,5 +30,10 @@ public class Command {
 
     public String getArgs() {
         return args;
+    }
+
+    @Override
+    public String toString() {
+        return commandType + " " + args;
     }
 }
