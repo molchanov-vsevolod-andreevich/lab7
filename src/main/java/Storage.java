@@ -55,12 +55,12 @@ public class Storage {
                 timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;
             }
 
-            ZMsg msg = ZMsg.recvMsg(notifier, false);
-
-            if (msg != null) {
-                String[] commandTypeAndArgs = new String(msg.getLast().getData()).split(" ", 1);
-                Command command = new Command(msg.getLast().getData());
-            }
+//            ZMsg msg = ZMsg.recvMsg(notifier, false);
+//
+//            if (msg != null) {
+//                String[] commandTypeAndArgs = new String(msg.getLast().getData()).split(" ", 1);
+//                Command command = new Command(msg.getLast().getData());
+//            }
 //
 //            if (msg != null) {
 //                String cmd = new String(msg.getLast().getData());
