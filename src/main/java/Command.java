@@ -8,11 +8,6 @@ public class Command {
 
         String commandName = splittedCmd[0];
 
-        if (isInteger(commandName)) {
-            commandType = Integer.parseInt(commandName);
-            args = new String(splittedCmd)
-        }
-
         if (commandName.equals("NOTIFY") &&
                 splittedCmd.length == 3 &&
                 isInteger(splittedCmd[1]) &&
@@ -35,6 +30,10 @@ public class Command {
         } else {
             commandType = Constants.INVALID_COMMAND_TYPE;
         }
+    }
+
+    public Command(String commandType, String args) {
+        
     }
 
     private boolean isInteger(String s) {
