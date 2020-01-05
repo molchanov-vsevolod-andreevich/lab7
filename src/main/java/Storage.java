@@ -50,7 +50,7 @@ public class Storage {
         while (!Thread.currentThread().isInterrupted()) {
 
             if (System.currentTimeMillis() == timeToNofification) {
-                Command command = new Command(Constants.NOTIFY_COMMAND_TYPE + " " + startIdx + " " + endIdx);
+                Command command = new Command(String[]{Constants.NOTIFY_COMMAND_TYPE, startIdx + " " + endIdx});
                 notifier.send(command.toString(), 0);
                 timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;
             }
