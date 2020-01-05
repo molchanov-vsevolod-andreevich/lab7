@@ -38,8 +38,6 @@ public class Storage {
 
         setValues(args);
 
-        System.out.println(storage);
-
         long timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;
         
         ZMQ.Context context = ZMQ.context (1);
