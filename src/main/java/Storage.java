@@ -9,7 +9,7 @@ public class Storage {
 
     private static int startIdx;
     private static int endIdx;
-    private static Map<Integer, String> storage = new HashMap<>();
+    private static final Map<Integer, String> storage = new HashMap<>();
 
     static void setInterval(String[] args) {
         startIdx = Integer.parseInt(args[0]);
@@ -23,7 +23,6 @@ public class Storage {
         }
 
         setInterval(args);
-
 
         if (args.length < 2 + endIdx - startIdx) {
 
