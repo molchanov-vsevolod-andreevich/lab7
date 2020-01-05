@@ -1,4 +1,5 @@
 import org.zeromq.SocketType;
+import org.zeromq.ZFrame;
 import org.zeromq.ZMQ;
 import org.zeromq.ZMsg;
 
@@ -46,8 +47,9 @@ public class CentralProxy {
 //                resp.getLast().reset(cmd);
 //                msg.getLast().reset(String.valueOf(msg.getFirst()));
 //                resp.getLast().reset(cmd);
-//                
-                resp.send(client);
+                ZFrame clientAddress = msg.unwrap();
+                System.out.println(clientAddress);
+//                resp.send(client);
             }
 
             if (items.pollin(1)) {
