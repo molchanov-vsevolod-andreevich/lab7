@@ -16,6 +16,7 @@ public class Command {
         switch (commandName) {
             case "NOTIFY":
                 commandType = 1;
+                args
                 break;
             case "PUT":
                 commandType = PUT_COMMAND_TYPE;
