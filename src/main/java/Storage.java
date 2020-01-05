@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class Storage {
 
+    private static long timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;
     private static int startIdx;
     private static int endIdx;
     private static final Map<Integer, String> storage = new HashMap<>();
@@ -37,8 +38,6 @@ public class Storage {
         }
 
         setValues(args);
-
-        long timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;
         
         ZMQ.Context context = ZMQ.context (1);
 
@@ -51,35 +50,35 @@ public class Storage {
         while (!Thread.currentThread().isInterrupted()) {
 
             if (System.currentTimeMillis() == timeToNofification) {
-                notifier.send("NOTIFY " + startIdx + " " + (startIdx + storage.size()), 0);
+                Command command = new Command(Constants.NOTIFY_COMMAND_TYPE + " " + startIdx + " " + endIdx);
+                notifier.send(command.toString(), 0);
                 timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;
             }
 
-//            ZMsg msg = ZMsg.recvMsg(notifier, false);
-//
-//            if (msg != null) {
-//                String[] commandTypeAndArgs = new String(msg.getLast().getData()).split(" ", 1);
-//                Command command = new Command(msg.getLast().getData());
-//            }
-//
-//            if (msg != null) {
-//                String cmd = new String(msg.getLast().getData());
-//
-//                String[] split = cmd.split(" ");
-//
-//                String commandType = split[0];
-//                if (commandType.equals("") ) {
-//
-//                }
-//            }
+            ZMsg msg = ZMsg.recvMsg(notifier, false);
 
-//            // Wait for next request from client
-//            String string = notifier.recvStr (0);
-//            System.out.printf ("Received request: [%s]\n", string);
-//            // Do some 'work'
-//            Thread.sleep (1000);
-//            // Send reply back to client
-//            notifier.send ("World");
+            if (msg != null) {
+                String[] commandTypeAndArgs = new String(msg.getLast().getData()).split(Constants.DELIMITER, Constants.LIMIT);
+                Command command = new Command(commandTypeAndArgs);
+
+                System.out.println(command.toString());
+
+                if (command.getCommandType() == Constants.GET_COMMAND_TYPE) {
+                    int key = Integer.parseInt(command.getArgs());
+                    String value = storage.get(key);
+
+                    msg.getLast().reset(value);
+                    msg.send(notifier);
+                }
+
+                if (command.getCommandType() == Constants.GET_COMMAND_TYPE) {
+                    String[] commandArgs = command.getArgs().split(Constants.DELIMITER, Constants.LIMIT);
+                    int key = Integer.parseInt(commandArgs[0]);
+                    String newValue = commandArgs[1];
+
+                    storage.put(key, newValue);
+                }
+            }
         }
 
         // We never get here but clean up anyhow notifier.close();

@@ -6,12 +6,6 @@ import java.util.Scanner;
 public class Client {
     public static void main(String[] args) {
 
-        String s = "PUT 0 hey";
-        String[] splittedS = s.split(" ", 2);
-        for (String ss : splittedS) {
-            System.out.println(ss);
-        }
-
         ZMQ.Context context = ZMQ.context(1);
 
         ZMQ.Socket requester = context.socket(SocketType.REQ);

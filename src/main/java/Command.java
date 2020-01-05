@@ -30,9 +30,9 @@ public class Command {
         }
     }
 
-    public Command(String commandType, String args) {
-        this.commandType = Integer.parseInt(commandType);
-        this.args = args;
+    public Command(String[] commandTypeAndArgs) {
+        commandType = Integer.parseInt(commandTypeAndArgs[0]);
+        args = commandTypeAndArgs[1];
     }
 
     private boolean isInteger(String s) {
