@@ -47,8 +47,8 @@ public class CentralProxy {
 //                resp.getLast().reset(cmd);
 //                msg.getLast().reset(String.valueOf(msg.getFirst()));
 //                resp.getLast().reset(cmd);
-                ZFrame clientAddress = msg.unwrap();
-                System.out.println(msg);
+                ZFrame resp = msg.unwrap();
+                resp.send(client);
 //                clientAddress.send();
 //                resp.send(client);
             }
