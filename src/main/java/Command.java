@@ -11,6 +11,7 @@ public class Command {
 
     public Command(String cmd) {
         String[] splittedCmd = cmd.split(" ");
+
         String commandName = splittedCmd[0];
         switch (commandName) {
             case "NOTIFY":
