@@ -1,5 +1,9 @@
 public class Command {
 
+    private static final int NOTIFY_TYPE = 1;
+    private static final int NOTIFY_TYPE = 1;
+    private static final int NOTIFY_TYPE = 1;
+
     private int commandType;
     private String args;
 
@@ -8,7 +12,7 @@ public class Command {
         String commandName = splittedCmd[0];
         switch (commandName) {
             case "NOTIFY":
-
+                commandType =
         }
     }
 
