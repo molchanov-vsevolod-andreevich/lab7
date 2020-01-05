@@ -28,6 +28,7 @@ public class Command {
                 break;
             default:
                 commandType = INVALID_COMMAND_TYPE;
+                break;
         }
     }
 
