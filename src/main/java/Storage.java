@@ -42,7 +42,7 @@ public class Storage {
         ZMQ.Context context = ZMQ.context (1);
 
         // Socket to talk to server
-        ZMQ.Socket notifier = context.socket (SocketType.DEALER);
+        ZMQ.Socket notifier = context.socket(SocketType.DEALER);
         notifier.connect ("tcp://localhost:5560");
 
         System.out.println("Storage has been launched and connected");

@@ -8,11 +8,7 @@ public class Command {
 
         String commandName = splittedCmd[0];
 
-        if (commandName.equals("NOTIFY") &&
-                splittedCmd.length == 3) {
-            commandType = Constants.INVALID_COMMAND_TYPE;
-            args = splittedCmd[1] + " " + splittedCmd[2];
-        } else if (commandName.equals("PUT") &&
+        if (commandName.equals("PUT") &&
                 splittedCmd.length == 3 &&
                 isInteger(splittedCmd[1])) {
             commandType = Constants.PUT_COMMAND_TYPE;
