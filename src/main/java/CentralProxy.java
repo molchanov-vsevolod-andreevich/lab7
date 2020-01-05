@@ -17,7 +17,7 @@ public class CentralProxy {
         ZMQ.Poller items = context.poller (2);
         items.register(client, ZMQ.Poller.POLLIN);
         items.register(storage, ZMQ.Poller.POLLIN);
-        
+
         int startIdx = 0;
         int endIdx = -1;
 
