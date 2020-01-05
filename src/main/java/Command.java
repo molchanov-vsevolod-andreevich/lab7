@@ -8,20 +8,25 @@ public class Command {
 
         String commandName = splittedCmd[0];
 
+        if (isInteger(commandName)) {
+            commandType = Integer.parseInt(commandName);
+            args = new String(splittedCmd)
+        }
+
         if (commandName.equals("NOTIFY") &&
                 splittedCmd.length == 3 &&
-                isIndex(splittedCmd[1]) &&
-                isIndex(splittedCmd[2])) {
+                isInteger(splittedCmd[1]) &&
+                isInteger(splittedCmd[2])) {
             commandType = Constants.INVALID_COMMAND_TYPE;
             args = splittedCmd[1] + " " + splittedCmd[2];
         } else if (commandName.equals("PUT") &&
                 splittedCmd.length == 3 &&
-                isIndex(splittedCmd[1])) {
+                isInteger(splittedCmd[1])) {
             commandType = Constants.PUT_COMMAND_TYPE;
             args = splittedCmd[1] + " " + splittedCmd[2];
         } else if (commandName.equals("GET") &&
                 splittedCmd.length == 2 &&
-                isIndex(splittedCmd[1])) {
+                isInteger(splittedCmd[1])) {
             commandType = Constants.GET_COMMAND_TYPE;
             args = splittedCmd[1];
         } else if (commandName.equals("Q") &&
@@ -32,7 +37,7 @@ public class Command {
         }
     }
 
-    private boolean isIndex(String s) {
+    private boolean isInteger(String s) {
         try {
             Integer.parseInt(s);
         } catch (Exception e) {
