@@ -52,18 +52,20 @@ public class CentralProxy {
 
             if (items.pollin(0)) {
                 ZMsg msg = ZMsg.recvMsg(client);
-                
+
                 Command command = new Command(msg.getLast().toString().split(Constants.DELIMITER, Constants.LIMIT));
 
                 int commandType = command.getCommandType();
                 if (commandType == Constants.GET_COMMAND_TYPE) {
                     int key = Integer.parseInt(command.getArgs());
-                    String value = storage.get(key);
 
-                    Command resp = new Command(Constants.RESPONSE_COMMAND_TYPE, value);
+                    for (Map.Entry<ZFrame, StorageInfo> entry : storages.entrySet()) {
+                        StorageInfo storage = entry.getValue();
 
-                    msg.getLast().reset(resp.toString());
-                    msg.send(notifier);
+                        if (storage.getLastNotificationTime() + (storages.size() + 1) * Constants.NOTIFICATION_TIMEOUT < System.currentTimeMillis()) {
+                            irrelevantStorages.add(entry.getKey());
+                        }
+                    }
                 }
 
                 if (commandType == Constants.PUT_COMMAND_TYPE) {
