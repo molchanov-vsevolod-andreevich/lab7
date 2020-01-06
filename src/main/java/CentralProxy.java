@@ -74,6 +74,7 @@ public class CentralProxy {
 
                     if (!isKeyValid) {
                         msg.getLast().reset("Key is not Valid");
+                        msg.send(client);
                     }
                 }
 
@@ -96,6 +97,7 @@ public class CentralProxy {
 
                     if (!isKeyValid) {
                         msg.getLast().reset("Key is not Valid");
+                        msg.send(client);
                     }
                 }
 //                String[] split = cmd.split(" ");
@@ -136,7 +138,6 @@ public class CentralProxy {
                 }
 
                 if (commandType == Constants.RESPONSE_COMMAND_TYPE) {
-                    System.out.println("GET");
                     String resp = command.getArgs();
                     msg.getLast().reset(resp);
                     msg.send(client);
