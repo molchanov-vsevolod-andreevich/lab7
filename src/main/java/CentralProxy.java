@@ -63,8 +63,8 @@ public class CentralProxy {
                         StorageInfo storageInfo = entry.getValue();
 
                         if (key >= storageInfo.getStartIdx() && key <= storageInfo.getEndIdx()) {
-                            entry.getKey().send(storage, 0);
-
+                            entry.getKey().send(storage, ZFrame.REUSE + ZFrame.MORE);
+                            
                         }
                     }
                 }
