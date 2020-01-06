@@ -32,7 +32,7 @@ public class Storage {
         timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;
     }
 
-    private void processGetRequest() {
+    private static void processGetRequest(Command command, ZMsg msg) {
         int key = Integer.parseInt(command.getArgs());
         String value = storage.get(key);
 
@@ -42,7 +42,7 @@ public class Storage {
         msg.send(notifier);
     }
 
-    private void processPutRequest() {
+    private static void processPutRequest(Command command, ZMsg msg) {
         String[] commandArgs = command.getArgs().split(Constants.DELIMITER, Constants.LIMIT);
         int key = Integer.parseInt(commandArgs[Constants.KEY_INDEX_IN_ARGS]);
         String newValue = commandArgs[Constants.VALUE_INDEX_IN_ARGS];
@@ -92,11 +92,11 @@ public class Storage {
                 int commandType = command.getCommandType();
 
                 if (commandType == Command.GET_COMMAND_TYPE) {
-                    processGetRequest();
+                    processGetRequest(command, msg);
                 }
 
                 if (commandType == Command.PUT_COMMAND_TYPE) {
-                    processPutRequest();
+                    processPutRequest(command, msg);
                 }
             }
         }
