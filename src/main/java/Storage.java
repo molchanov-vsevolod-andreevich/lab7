@@ -25,21 +25,22 @@ public class Storage {
     }
 
     public static void main(String[] args) {
-        if (args.length < 2) {
+        if (args.length < Constants.QUANTITY_OF_INTERVAL_ARGS) {
             System.err.println(Constants.NOT_ENOUGH_ARGS_ERROR_MESSAGE);
             return;
         }
 
         setInterval(args);
 
-        if (args.length != 2 + endIdx - startIdx + 1) {
+        int quantityOfNeededArgs = Constants.QUANTITY_OF_INTERVAL_ARGS + endIdx - startIdx + 1;
+        if (args.length != quantityOfNeededArgs) {
             System.err.println(Constants.NOT_ENOUGH_ARGS_ERROR_MESSAGE);
             return;
         }
 
         setValues(args);
         
-        ZMQ.Context context = ZMQ.context (Constants.IO_THREADS);
+        ZMQ.Context context = ZMQ.context(Constants.IO_THREADS);
 
         ZMQ.Socket notifier = context.socket(SocketType.DEALER);
         notifier.connect (Constants.STORAGE_ADDRESS);

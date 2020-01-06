@@ -35,5 +35,5 @@ class Constants {
     static final int START_INDEX_IN_ARGS = 0;
     static final int END_INDEX_IN_ARGS = 1;
     static final int FIRST_VALUE_INDEX_IN_ARGS = 2;
-    static final int QUANTITY_OF = 2;
+    static final int QUANTITY_OF_INTERVAL_ARGS = 2;
 }
