@@ -73,7 +73,7 @@ public class CentralProxy {
             if (items.pollin(1)) {
                 ZMsg msg = ZMsg.recvMsg(storage);
 
-                Command command = new Command(msg.getLast().toString().split(Constants.DELIMITER));
+                Command command = new Command(msg.getLast().toString().split(Constants.DELIMITER, Constants.LIMIT));
 
                 int commandType = command.getCommandType();
 
