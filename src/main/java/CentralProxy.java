@@ -59,23 +59,44 @@ public class CentralProxy {
                 if (commandType == Constants.GET_COMMAND_TYPE) {
                     int key = Integer.parseInt(command.getArgs());
 
+                    boolean isKeyValid = false;
+
                     for (Map.Entry<ZFrame, StorageInfo> entry : storages.entrySet()) {
                         StorageInfo storageInfo = entry.getValue();
 
                         if (key >= storageInfo.getStartIdx() && key <= storageInfo.getEndIdx()) {
                             entry.getKey().send(storage, ZFrame.REUSE + ZFrame.MORE);
                             msg.send(storage);
+                            isKeyValid = true;
                             break;
                         }
+                    }
+
+                    if (!isKeyValid) {
+                        msg.getLast().reset("Key is not Valid");
                     }
                 }
 
                 if (commandType == Constants.PUT_COMMAND_TYPE) {
                     String[] commandArgs = command.getArgs().split(Constants.DELIMITER, Constants.LIMIT);
-                    int key = Integer.parseInt(commandArgs[0]);
-                    String newValue = commandArgs[1];
 
-                    storage.put(key, newValue);
+                    int key = Integer.parseInt(commandArgs[0]);
+
+                    boolean isKeyValid = false;
+
+                    for (Map.Entry<ZFrame, StorageInfo> entry : storages.entrySet()) {
+                        StorageInfo storageInfo = entry.getValue();
+
+                        if (key >= storageInfo.getStartIdx() && key <= storageInfo.getEndIdx()) {
+                            entry.getKey().send(storage, ZFrame.REUSE + ZFrame.MORE);
+                            msg.send(storage);
+                            isKeyValid = true;
+                        }
+                    }
+
+                    if (!isKeyValid) {
+                        msg.getLast().reset("Key is not Valid");
+                    }
                 }
 //                String[] split = cmd.split(" ");
 //
@@ -97,8 +118,8 @@ public class CentralProxy {
 //                ZFrame resp = msg.unwrap();
 //                resp.send(client);
 //                clientAddress.send();
-                msg.getLast().reset(cmd);
-                msg.send(client);
+//                msg.getLast().reset(cmd);
+//                msg.send(client);
             }
 
             if (items.pollin(1)) {
