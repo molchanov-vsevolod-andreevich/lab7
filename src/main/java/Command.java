@@ -13,6 +13,12 @@ public class Command {
     static final int GET_COMMAND_NEEDED_LENGTH = 2;
     static final int QUIT_COMMAND_NEEDED_LENGTH = 1;
 
+    // Command Indexes
+    static final int KEY_INDEX_IN_COMMAND = 1;
+    static final int VALUE_INDEX_IN_COMMAND = 2;
+    static final int COMMAND_TYPE_INDEX = 0;
+    static final int ARGS_INDEX = 0;
+
     private int commandType;
     private String args;
 
@@ -23,14 +29,14 @@ public class Command {
 
         if (commandName.equals("PUT") &&
                 splittedCmd.length == PUT_COMMAND_NEEDED_LENGTH &&
-                isInteger(splittedCmd[1])) {
+                isInteger(splittedCmd[KEY_INDEX_IN_COMMAND])) {
             commandType = PUT_COMMAND_TYPE;
-            args = splittedCmd[1] + " " + splittedCmd[2];
+            args = splittedCmd[KEY_INDEX_IN_COMMAND] + " " + splittedCmd[VALUE_INDEX_IN_COMMAND];
         } else if (commandName.equals("GET") &&
                 splittedCmd.length == GET_COMMAND_NEEDED_LENGTH &&
-                isInteger(splittedCmd[1])) {
+                isInteger(splittedCmd[KEY_INDEX_IN_COMMAND])) {
             commandType = GET_COMMAND_TYPE;
-            args = splittedCmd[1];
+            args = splittedCmd[KEY_INDEX_IN_COMMAND];
         } else if (commandName.equals("Q") &&
                 splittedCmd.length == QUIT_COMMAND_NEEDED_LENGTH) {
             commandType = QUIT_COMMAND_TYPE;
@@ -40,8 +46,8 @@ public class Command {
     }
 
     public Command(String[] commandTypeAndArgs) {
-        commandType = Integer.parseInt(commandTypeAndArgs[0]);
-        args = commandTypeAndArgs[1];
+        commandType = Integer.parseInt(commandTypeAndArgs[COMMAND_TYPE_INDEX]);
+        args = commandTypeAndArgs[ARGS_INDEX];
     }
 
     public Command(int commandType, String args) {

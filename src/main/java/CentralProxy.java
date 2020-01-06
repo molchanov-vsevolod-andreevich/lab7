@@ -10,6 +10,9 @@ import java.util.Map;
 
 public class CentralProxy {
 
+    private static ZMQ.Socket client;
+    private static ZMQ.Socket storage;
+
     private static final Map<ZFrame, StorageInfo> storages = new HashMap<>();
 
     private static void removeIrrelevantStorages() {
@@ -31,8 +34,8 @@ public class CentralProxy {
     public static void main(String[] args) {
         ZMQ.Context context = ZMQ.context(Constants.IO_THREADS);
 
-        ZMQ.Socket client = context.socket(SocketType.ROUTER);
-        ZMQ.Socket storage = context.socket(SocketType.ROUTER);
+        client = context.socket(SocketType.ROUTER);
+        storage = context.socket(SocketType.ROUTER);
         client.bind(Constants.CLIENT_ADDRESS);
         storage.bind(Constants.STORAGE_ADDRESS);
 
@@ -127,5 +130,9 @@ public class CentralProxy {
             }
             System.out.println(storages.size());
         }
+
+        client.close();
+        storage.close();
+        context.term();
     }
 }
