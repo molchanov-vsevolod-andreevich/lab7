@@ -60,7 +60,7 @@ public class CentralProxy {
                 int commandType = command.getCommandType();
 
                 if (commandType == Constants.NOTIFY_COMMAND_TYPE) {
-                    
+
                 }
 
                 if (commandType == Constants.RESPONSE_COMMAND_TYPE) {
