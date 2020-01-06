@@ -57,7 +57,7 @@ public class Storage {
 
             ZMsg msg = ZMsg.recvMsg(notifier, Constants.DONT_WAIT);
 
-            if (msg != null) {
+            if (!msg.isEmpty()) {
                 String[] commandTypeAndArgs = msg.getLast().toString().split(Constants.DELIMITER, Constants.LIMIT);
                 Command command = new Command(commandTypeAndArgs);
 
