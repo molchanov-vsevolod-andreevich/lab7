@@ -126,7 +126,7 @@ public class CentralProxy {
             }
 
             if (items.pollin(1)) {
-                ZMsg msg = ZMsg.recvMsg(storage);
+                ZMsg msg = ZMsg.recvMsg(storage, false);
 
                 Command command = new Command(msg.getLast().toString().split(Constants.DELIMITER, Constants.LIMIT));
 
@@ -140,8 +140,8 @@ public class CentralProxy {
 
                 if (commandType == Constants.RESPONSE_COMMAND_TYPE) {
                     System.out.println(msg.unwrap().toString());
-                    String resp = command.getArgs();
-                    msg.getLast().reset(resp);
+//                    String resp = command.getArgs();
+//                    msg.getLast().reset(resp);
                     msg.send(client);
                 }
             }
