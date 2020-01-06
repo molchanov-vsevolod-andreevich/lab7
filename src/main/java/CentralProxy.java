@@ -13,7 +13,6 @@ public class CentralProxy {
     private static final Map<ZFrame, StorageInfo> storages = new HashMap<>();
 
     private static void removeIrrelevantStorages() {
-        System.out.println("Removing");
         List<ZFrame> irrelevantStorages = new ArrayList<>();
 
         for (Map.Entry<ZFrame, StorageInfo> entry : storages.entrySet()) {
@@ -49,12 +48,12 @@ public class CentralProxy {
         while (!Thread.currentThread().isInterrupted()) {
             items.poll();
 
-            System.out.println(storages.size());
+            removeIrrelevantStorages();
 
             if (items.pollin(0)) {
                 ZMsg msg = ZMsg.recvMsg(client);
-                String cmd = new String(msg.getLast().getData());
-
+                Command command = new Command(msg.getLast().toString().split(Constants.DELIMITER, Constants.LIMIT));
+                
 //                String[] split = cmd.split(" ");
 //
 //                String commandType = split[0];
@@ -80,7 +79,6 @@ public class CentralProxy {
             }
 
             if (items.pollin(1)) {
-                System.out.println("Message");
                 ZMsg msg = ZMsg.recvMsg(storage, false);
 
                 Command command = new Command(msg.getLast().toString().split(Constants.DELIMITER, Constants.LIMIT));
@@ -99,8 +97,6 @@ public class CentralProxy {
                     msg.send(client);
                 }
             }
-
-            removeIrrelevantStorages();
         }
     }
 }
