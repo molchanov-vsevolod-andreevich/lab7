@@ -60,10 +60,11 @@ public class CentralProxy {
                     int key = Integer.parseInt(command.getArgs());
 
                     for (Map.Entry<ZFrame, StorageInfo> entry : storages.entrySet()) {
-                        StorageInfo storage = entry.getValue();
+                        StorageInfo storageInfo = entry.getValue();
 
-                        if (storage.getLastNotificationTime() + (storages.size() + 1) * Constants.NOTIFICATION_TIMEOUT < System.currentTimeMillis()) {
-                            irrelevantStorages.add(entry.getKey());
+                        if (key >= storageInfo.getStartIdx() && key <= storageInfo.getEndIdx()) {
+                            entry.getKey().send(storage, );
+
                         }
                     }
                 }
