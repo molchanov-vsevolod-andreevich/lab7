@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Client {
     public static void main(String[] args) {
 
-        ZMQ.Context context = ZMQ.context(1);
+        ZMQ.Context context = ZMQ.context(Constants.IO_THREADS);
 
         ZMQ.Socket requester = context.socket(SocketType.REQ);
         requester.connect(Constants.CLIENT_ADDRESS);
@@ -29,9 +29,9 @@ public class Client {
                 break;
             }
 
-            requester.send(command.toString(), 0);
+            requester.send(command.toString(), Constants.DEFAULT_ZMQ_FLAG);
 
-            String reply = requester.recvStr(0);
+            String reply = requester.recvStr(Constants.DEFAULT_ZMQ_FLAG);
             System.out.println(reply);
 
         }

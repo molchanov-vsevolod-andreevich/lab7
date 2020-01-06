@@ -39,18 +39,18 @@ public class Storage {
 
         setValues(args);
         
-        ZMQ.Context context = ZMQ.context (1);
+        ZMQ.Context context = ZMQ.context (Constants.IO_THREADS);
 
         ZMQ.Socket notifier = context.socket(SocketType.DEALER);
         notifier.connect (Constants.STORAGE_ADDRESS);
 
-        System.out.println("Storage has been launched and connected");
+        System.out.println(Constants.START_STORAGE_MESSAGE);
 
         while (!Thread.currentThread().isInterrupted()) {
 
             if (System.currentTimeMillis() == timeToNofification) {
                 Command command = new Command(Constants.NOTIFY_COMMAND_TYPE, startIdx + " " + endIdx);
-                notifier.send(command.toString(), 0);
+                notifier.send(command.toString(), Constants.DEFAULT_ZMQ_FLAG);
                 timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;
             }
 

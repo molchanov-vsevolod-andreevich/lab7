@@ -1,8 +1,7 @@
 import java.time.Duration;
 
 class Constants {
-    // Server constants
-    static final String HOST = "localhost";
+    // Addresses
     static final String CLIENT_ADDRESS = "tcp://localhost:5559";
     static final String STORAGE_ADDRESS = "tcp://localhost:5560";
 
@@ -14,6 +13,8 @@ class Constants {
             "\tGET [index]\n" +
             "\tQ for quit";
     static final String START_CLIENT_MESSAGE = "Сlient has been launched and connected";
+    static final String START_STORAGE_MESSAGE = "Storage has been launched and connected";
+    static final String START_PROXY_MESSAGE = "Proxy server has been launched and connected";
 
     // Command Types
     static final int INVALID_COMMAND_TYPE = 0;
@@ -23,17 +24,15 @@ class Constants {
     static final int QUIT_COMMAND_TYPE = 4;
     static final int RESPONSE_COMMAND_TYPE = 5;
 
-    // ZeroFlags
-
-    // HTTP query parameters
-    static final String URL_PARAMETER_NAME = "url";
-    static final String COUNT_PARAMETER_NAME = "count";
+    // ZMQ Flags
+    static final int DEFAULT_ZMQ_FLAG = 0;
 
     // Other constants
-    static final Duration TIMEOUT = Duration.ofMillis(5000);
-    static final int SERVER_PORT_IDX_IN_ARGS = 0;
     static final String DELIMITER = " ";
     static final int LIMIT = 2;
-
+    static final int IO_THREADS = 1;
     static final long NOTIFICATION_TIMEOUT = 3000;
+
+    // Poller constants
+    static final int POLLER_SIZE = 2;
 }

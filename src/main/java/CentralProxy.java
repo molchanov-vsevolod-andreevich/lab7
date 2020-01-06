@@ -29,16 +29,16 @@ public class CentralProxy {
     }
 
     public static void main(String[] args) {
-        ZMQ.Context context = ZMQ.context(1);
+        ZMQ.Context context = ZMQ.context(Constants.IO_THREADS);
 
         ZMQ.Socket client = context.socket(SocketType.ROUTER);
         ZMQ.Socket storage = context.socket(SocketType.ROUTER);
         client.bind(Constants.CLIENT_ADDRESS);
         storage.bind(Constants.STORAGE_ADDRESS);
 
-        System.out.println("Proxy server has been launched and connected");
+        System.out.println(Constants.START_PROXY_MESSAGE);
 
-        ZMQ.Poller items = context.poller(2);
+        ZMQ.Poller items = context.poller(Constants.POLLER_SIZE);
         items.register(client, ZMQ.Poller.POLLIN);
         items.register(storage, ZMQ.Poller.POLLIN);
 
