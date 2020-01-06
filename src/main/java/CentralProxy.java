@@ -139,9 +139,9 @@ public class CentralProxy {
                 }
 
                 if (commandType == Constants.RESPONSE_COMMAND_TYPE) {
-                    System.out.println(msg.unwrap().toString());
-//                    String resp = command.getArgs();
-//                    msg.getLast().reset(resp);
+                    String resp = command.getArgs();
+                    System.out.println(resp);
+                    msg.getLast().reset(resp);
                     msg.send(client);
                 }
             }
