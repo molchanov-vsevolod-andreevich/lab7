@@ -31,20 +31,64 @@ public class CentralProxy {
         }
     }
 
-    processGetRequest() {
+    private static void processGetRequest(Command command, ZMsg msg) {
+        int key = Integer.parseInt(command.getArgs());
 
+        boolean isKeyValid = false;
+
+        for (Map.Entry<ZFrame, StorageInfo> entry : storages.entrySet()) {
+            StorageInfo storageInfo = entry.getValue();
+
+            if (key >= storageInfo.getStartIdx() && key <= storageInfo.getEndIdx()) {
+                entry.getKey().send(storage, ZFrame.REUSE + ZFrame.MORE);
+                msg.send(storage, Constants.DONT_DESTROY);
+                isKeyValid = true;
+                break;
+            }
+        }
+
+        if (!isKeyValid) {
+            msg.getLast().reset(Command.KEY_ISNT_VALID_RESPONSE);
+            msg.send(client);
+        }
     }
 
-    processPutRequest() {
+    private static void processPutRequest(Command command, ZMsg msg) {
+        String[] commandArgs = command.getArgs().split(Constants.DELIMITER, Constants.LIMIT);
 
+        int key = Integer.parseInt(commandArgs[Constants.KEY_INDEX_IN_ARGS]);
+
+        boolean isKeyValid = false;
+
+        for (Map.Entry<ZFrame, StorageInfo> entry : storages.entrySet()) {
+            StorageInfo storageInfo = entry.getValue();
+
+            if (key >= storageInfo.getStartIdx() && key <= storageInfo.getEndIdx()) {
+                entry.getKey().send(storage, Constants.REUSE_AND_MORE_ZMQ_FLAG);
+                msg.send(storage, Constants.DONT_DESTROY);
+                isKeyValid = true;
+            }
+        }
+
+        if (isKeyValid) {
+            msg.getLast().reset(Command.VALUE_PUTTED_RESPONSE);
+        } else {
+            msg.getLast().reset(Command.KEY_ISNT_VALID_RESPONSE);
+        }
+        msg.send(client);
     }
 
-    processNotifyMsg() {
-
+    private static void processNotifyMsg(Command command, ZMsg msg) {
+        ZFrame storageID = msg.unwrap();
+        storages.putIfAbsent(storageID, new StorageInfo(command.getArgs()));
+        storages.get(storageID).setLastNotificationTime(System.currentTimeMillis());
     }
-    
-    processResponseMsg()  {
 
+    private static void processResponseMsg(Command command, ZMsg msg)  {
+        msg.remove();
+        String resp = command.getArgs();
+        msg.getLast().reset(resp);
+        msg.send(client);
     }
 
     public static void main(String[] args) {
@@ -75,52 +119,11 @@ public class CentralProxy {
                 int commandType = command.getCommandType();
 
                 if (commandType == Command.GET_COMMAND_TYPE) {
-                    processGetRequest();
-                    int key = Integer.parseInt(command.getArgs());
-
-                    boolean isKeyValid = false;
-
-                    for (Map.Entry<ZFrame, StorageInfo> entry : storages.entrySet()) {
-                        StorageInfo storageInfo = entry.getValue();
-
-                        if (key >= storageInfo.getStartIdx() && key <= storageInfo.getEndIdx()) {
-                            entry.getKey().send(storage, ZFrame.REUSE + ZFrame.MORE);
-                            msg.send(storage, Constants.DONT_DESTROY);
-                            isKeyValid = true;
-                            break;
-                        }
-                    }
-
-                    if (!isKeyValid) {
-                        msg.getLast().reset(Command.KEY_ISNT_VALID_RESPONSE);
-                        msg.send(client);
-                    }
+                    processGetRequest(command, msg);
                 }
 
                 if (commandType == Command.PUT_COMMAND_TYPE) {
-                    processPutRequest();
-                    String[] commandArgs = command.getArgs().split(Constants.DELIMITER, Constants.LIMIT);
-
-                    int key = Integer.parseInt(commandArgs[Constants.KEY_INDEX_IN_ARGS]);
-
-                    boolean isKeyValid = false;
-
-                    for (Map.Entry<ZFrame, StorageInfo> entry : storages.entrySet()) {
-                        StorageInfo storageInfo = entry.getValue();
-
-                        if (key >= storageInfo.getStartIdx() && key <= storageInfo.getEndIdx()) {
-                            entry.getKey().send(storage, Constants.REUSE_AND_MORE_ZMQ_FLAG);
-                            msg.send(storage, Constants.DONT_DESTROY);
-                            isKeyValid = true;
-                        }
-                    }
-
-                    if (isKeyValid) {
-                        msg.getLast().reset(Command.VALUE_PUTTED_RESPONSE);
-                    } else {
-                        msg.getLast().reset(Command.KEY_ISNT_VALID_RESPONSE);
-                    }
-                    msg.send(client);
+                    processPutRequest(command, msg);
                 }
             }
 
@@ -133,18 +136,11 @@ public class CentralProxy {
                 int commandType = command.getCommandType();
 
                 if (commandType == Command.NOTIFY_COMMAND_TYPE) {
-                    processNotifyMsg();
-                    ZFrame storageID = msg.unwrap();
-                    storages.putIfAbsent(storageID, new StorageInfo(command.getArgs()));
-                    storages.get(storageID).setLastNotificationTime(System.currentTimeMillis());
+                    processNotifyMsg(command, msg);
                 }
 
                 if (commandType == Command.RESPONSE_COMMAND_TYPE) {
-                    processResponseMsg();
-                    msg.remove();
-                    String resp = command.getArgs();
-                    msg.getLast().reset(resp);
-                    msg.send(client);
+                    processResponseMsg(command, msg);
                 }
             }
         }
