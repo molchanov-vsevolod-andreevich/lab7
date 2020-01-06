@@ -31,6 +31,22 @@ public class CentralProxy {
         }
     }
 
+    processGetRequest() {
+
+    }
+
+    processPutRequest() {
+
+    }
+
+    processNotifyMsg() {
+
+    }
+    
+    processResponseMsg()  {
+
+    }
+
     public static void main(String[] args) {
         ZMQ.Context context = ZMQ.context(Constants.IO_THREADS);
 
@@ -59,6 +75,7 @@ public class CentralProxy {
                 int commandType = command.getCommandType();
 
                 if (commandType == Command.GET_COMMAND_TYPE) {
+                    processGetRequest();
                     int key = Integer.parseInt(command.getArgs());
 
                     boolean isKeyValid = false;
@@ -81,6 +98,7 @@ public class CentralProxy {
                 }
 
                 if (commandType == Command.PUT_COMMAND_TYPE) {
+                    processPutRequest();
                     String[] commandArgs = command.getArgs().split(Constants.DELIMITER, Constants.LIMIT);
 
                     int key = Integer.parseInt(commandArgs[Constants.KEY_INDEX_IN_ARGS]);
@@ -115,12 +133,14 @@ public class CentralProxy {
                 int commandType = command.getCommandType();
 
                 if (commandType == Command.NOTIFY_COMMAND_TYPE) {
+                    processNotifyMsg();
                     ZFrame storageID = msg.unwrap();
                     storages.putIfAbsent(storageID, new StorageInfo(command.getArgs()));
                     storages.get(storageID).setLastNotificationTime(System.currentTimeMillis());
                 }
 
                 if (commandType == Command.RESPONSE_COMMAND_TYPE) {
+                    processResponseMsg();
                     msg.remove();
                     String resp = command.getArgs();
                     msg.getLast().reset(resp);
