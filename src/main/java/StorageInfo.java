@@ -6,8 +6,8 @@ public class StorageInfo {
     public StorageInfo(String interval) {
         String[] splittedInterval = interval.split(Constants.DELIMITER);
 
-        startIdx = Integer.parseInt(splittedInterval[0]);
-        endIdx = Integer.parseInt(splittedInterval[1]);
+        startIdx = Integer.parseInt(splittedInterval[Constants.START_INDEX_IN_ARGS]);
+        endIdx = Integer.parseInt(splittedInterval[Constants.END_INDEX_IN_ARGS]);
     }
 
     public int getStartIdx() {

@@ -61,7 +61,7 @@ public class Storage {
                 String[] commandTypeAndArgs = msg.getLast().toString().split(Constants.DELIMITER, Constants.LIMIT);
                 Command command = new Command(commandTypeAndArgs);
 
-                System.out.println(command.toString());
+                System.out.println(msg.getFirst() + ": " + command.prettyPrinting());
 
                 int commandType = command.getCommandType();
                 if (commandType == Command.GET_COMMAND_TYPE) {
@@ -70,15 +70,14 @@ public class Storage {
 
                     Command resp = new Command(Command.RESPONSE_COMMAND_TYPE, value);
 
-                    System.out.println(msg.getFirst());
                     msg.getLast().reset(resp.toString());
                     msg.send(notifier);
                 }
 
                 if (commandType == Command.PUT_COMMAND_TYPE) {
                     String[] commandArgs = command.getArgs().split(Constants.DELIMITER, Constants.LIMIT);
-                    int key = Integer.parseInt(commandArgs[0]);
-                    String newValue = commandArgs[1];
+                    int key = Integer.parseInt(commandArgs[Constants.KEY_INDEX_IN_ARGS]);
+                    String newValue = commandArgs[Constants.VALUE_INDEX_IN_ARGS];
 
                     storage.put(key, newValue);
 
