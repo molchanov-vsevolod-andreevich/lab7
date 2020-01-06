@@ -69,6 +69,7 @@ public class Storage {
 
                     Command resp = new Command(Constants.RESPONSE_COMMAND_TYPE, value);
 
+                    System.out.println(msg.getFirst());
                     msg.getLast().reset(resp.toString());
                     msg.send(notifier);
                 }

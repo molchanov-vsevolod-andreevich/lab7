@@ -57,7 +57,7 @@ public class CentralProxy {
 
                 int commandType = command.getCommandType();
                 if (commandType == Constants.GET_COMMAND_TYPE) {
-                    System.out.println(msg.getFirst());
+                    System.out.println("GET client: " + msg.getFirst());
                     int key = Integer.parseInt(command.getArgs());
 
                     boolean isKeyValid = false;
@@ -66,6 +66,8 @@ public class CentralProxy {
                         StorageInfo storageInfo = entry.getValue();
 
                         if (key >= storageInfo.getStartIdx() && key <= storageInfo.getEndIdx()) {
+                            System.out.println("Store: " + entry.getKey());
+                            System.out.println("Store message: " + msg.getFirst());
                             entry.getKey().send(storage, ZFrame.REUSE + ZFrame.MORE);
                             msg.send(storage);
                             isKeyValid = true;
