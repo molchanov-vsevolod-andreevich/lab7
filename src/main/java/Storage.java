@@ -27,11 +27,9 @@ public class Storage {
     }
 
     private static void notifyProxy() {
-        if (System.currentTimeMillis() == timeToNofification) {
-            Command command = new Command(Command.NOTIFY_COMMAND_TYPE, startIdx + " " + endIdx);
-            notifier.send(command.toString(), Constants.DEFAULT_ZMQ_FLAG);
-            timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;
-        }
+        Command command = new Command(Command.NOTIFY_COMMAND_TYPE, startIdx + " " + endIdx);
+        notifier.send(command.toString(), Constants.DEFAULT_ZMQ_FLAG);
+        timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;
     }
 
     public static void main(String[] args) {
@@ -59,7 +57,9 @@ public class Storage {
 
         while (!Thread.currentThread().isInterrupted()) {
 
-            notifyProxy();
+            if (System.currentTimeMillis() == timeToNofification) {
+                notifyProxy();
+            }
 
             ZMsg msg = ZMsg.recvMsg(notifier, Constants.DONT_WAIT);
 
