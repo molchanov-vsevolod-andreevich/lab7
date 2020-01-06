@@ -75,7 +75,7 @@ public class CentralProxy {
 
                 Command command = new Command(msg.getLast().toString());
 
-                System.out.println(command);
+                System.out.println(msg.getLast().toString());
 
                 int commandType = command.getCommandType();
 
