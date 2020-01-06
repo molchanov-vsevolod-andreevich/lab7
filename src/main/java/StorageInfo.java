@@ -4,7 +4,6 @@ public class StorageInfo {
     private long lastNotificationTime;
 
     public StorageInfo(String interval) {
-        System.out.println(interval);
         String[] splittedInterval = interval.split(Constants.DELIMITER);
 
         startIdx = Integer.parseInt(splittedInterval[0]);
