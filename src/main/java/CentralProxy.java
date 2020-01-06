@@ -54,13 +54,20 @@ public class CentralProxy {
 
             if (items.pollin(1)) {
                 ZMsg msg = ZMsg.recvMsg(storage);
-                String interval = new String(msg.getLast().getData());
 
-                String[] split = interval.split(" ");
-                startIdx = Integer.parseInt(split[1]);
-                endIdx = Integer.parseInt(split[2]);
+                Command command = new Command(msg.getLast().toString());
 
-                System.out.println("interval: " + startIdx + " " + endIdx);
+                int commandType = command.getCommandType();
+
+                if (commandType == Constants.NOTIFY_COMMAND_TYPE) {
+                    
+                }
+
+                if (commandType == Constants.RESPONSE_COMMAND_TYPE) {
+                    String resp = command.getArgs();
+                    msg.getLast().reset(resp);
+                    msg.send(client);
+                }
             }
         }
     }

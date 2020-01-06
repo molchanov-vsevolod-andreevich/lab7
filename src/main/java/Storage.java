@@ -57,12 +57,13 @@ public class Storage {
             ZMsg msg = ZMsg.recvMsg(notifier, false);
 
             if (msg != null) {
-                String[] commandTypeAndArgs = new String(msg.getLast().getData()).split(Constants.DELIMITER, Constants.LIMIT);
+                String[] commandTypeAndArgs = msg.getLast().toString().split(Constants.DELIMITER, Constants.LIMIT);
                 Command command = new Command(commandTypeAndArgs);
 
                 System.out.println(command.toString());
 
-                if (command.getCommandType() == Constants.GET_COMMAND_TYPE) {
+                int commandType = command.getCommandType();
+                if (commandType == Constants.GET_COMMAND_TYPE) {
                     int key = Integer.parseInt(command.getArgs());
                     String value = storage.get(key);
 
@@ -72,7 +73,7 @@ public class Storage {
                     msg.send(notifier);
                 }
 
-                if (command.getCommandType() == Constants.PUT_COMMAND_TYPE) {
+                if (commandType == Constants.PUT_COMMAND_TYPE) {
                     String[] commandArgs = command.getArgs().split(Constants.DELIMITER, Constants.LIMIT);
                     int key = Integer.parseInt(commandArgs[0]);
                     String newValue = commandArgs[1];

@@ -19,7 +19,7 @@ public class Client {
 
             int commandType = command.getCommandType();
 
-            if (commandType == Constants.INVALID_COMMAND_TYPE || commandType == Constants.NOTIFY_COMMAND_TYPE) {
+            if (commandType == Constants.INVALID_COMMAND_TYPE) {
                 System.out.println(Constants.INVALID_COMMAND_MESSAGE);
                 continue;
             }
