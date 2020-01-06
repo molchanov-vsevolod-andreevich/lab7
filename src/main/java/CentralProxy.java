@@ -142,7 +142,7 @@ public class CentralProxy {
 
                 if (commandType == Constants.RESPONSE_COMMAND_TYPE) {
                     String resp = command.getArgs();
-                    System.out.println(resp);
+                    System.out.println("GET storage: " + msg.getFirst());
                     msg.getLast().reset(resp);
                     msg.send(client);
                 }
