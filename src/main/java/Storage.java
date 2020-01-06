@@ -80,6 +80,8 @@ public class Storage {
                     String newValue = commandArgs[1];
 
                     storage.put(key, newValue);
+
+                    msg.destroy();
                 }
             }
         }
