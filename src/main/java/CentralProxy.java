@@ -136,6 +136,7 @@ public class CentralProxy {
                 }
 
                 if (commandType == Constants.RESPONSE_COMMAND_TYPE) {
+                    System.out.println("GET");
                     String resp = command.getArgs();
                     msg.getLast().reset(resp);
                     msg.send(client);
