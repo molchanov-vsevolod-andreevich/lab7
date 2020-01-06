@@ -19,8 +19,8 @@ public class Storage {
 
     private static void setValues(String[] args) {
         int argsLen = args.length;
-        for (int i = 2, j = 0; i < argsLen; i++, j++) {
-            storage.put(startIdx + j, args[i]);
+        for (int i = 2, j = startIdx; i < argsLen; i++, j++) {
+            storage.put(j, args[i]);
         }
     }
 
