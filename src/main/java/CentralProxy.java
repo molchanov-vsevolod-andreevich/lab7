@@ -3,7 +3,13 @@ import org.zeromq.ZFrame;
 import org.zeromq.ZMQ;
 import org.zeromq.ZMsg;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CentralProxy {
+
+    private static final Map<ZFrame, StorageInfo> storages = new HashMap<>();
+
     public static void main(String[] args) {
         ZMQ.Context context = ZMQ.context(1);
 
@@ -60,7 +66,12 @@ public class CentralProxy {
                 int commandType = command.getCommandType();
 
                 if (commandType == Constants.NOTIFY_COMMAND_TYPE) {
-
+                    ZFrame storageID = msg.unwrap();
+                    if (storages.containsKey(storageID)) { // maybe easier to just put without 
+                        storages.get(storageID).setLastNotificationTime(System.currentTimeMillis());
+                    } else {
+                        storages.put(storageID, new StorageInfo(command.getArgs(), System.currentTimeMillis()));
+                    }
                 }
 
                 if (commandType == Constants.RESPONSE_COMMAND_TYPE) {
