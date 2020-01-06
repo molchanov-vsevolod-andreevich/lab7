@@ -75,9 +75,9 @@ public class CentralProxy {
 
                 Command command = new Command(msg.getLast().toString().split(Constants.DELIMITER));
 
-//                System.out.println(msg.getLast().toString());
-
                 int commandType = command.getCommandType();
+
+                System.out.println(command.getArgs());
 
                 if (commandType == Constants.NOTIFY_COMMAND_TYPE) {
                     ZFrame storageID = msg.unwrap();
