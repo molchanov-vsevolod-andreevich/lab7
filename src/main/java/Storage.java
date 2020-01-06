@@ -64,7 +64,6 @@ public class Storage {
 
                 int commandType = command.getCommandType();
                 if (commandType == Constants.GET_COMMAND_TYPE) {
-                    System.out.println("GET");
                     int key = Integer.parseInt(command.getArgs());
                     String value = storage.get(key);
 
