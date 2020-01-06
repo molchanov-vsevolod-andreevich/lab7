@@ -129,6 +129,7 @@ public class CentralProxy {
 
             if (items.pollin(Constants.POLLER_STORAGE_INDEX)) {
                 ZMsg msg = ZMsg.recvMsg(storage, Constants.DONT_WAIT);
+                System.out.println(msg);
 
                 Command command = new Command(msg.getLast().toString().split(Constants.DELIMITER, Constants.LIMIT));
                 System.out.println(msg.getFirst() + ": " + command.prettyPrinting());
