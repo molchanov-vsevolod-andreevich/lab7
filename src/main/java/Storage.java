@@ -32,6 +32,26 @@ public class Storage {
         timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;
     }
 
+    private void processGetRequest() {
+        int key = Integer.parseInt(command.getArgs());
+        String value = storage.get(key);
+
+        Command resp = new Command(Command.RESPONSE_COMMAND_TYPE, value);
+
+        msg.getLast().reset(resp.toString());
+        msg.send(notifier);
+    }
+
+    private void processPutRequest() {
+        String[] commandArgs = command.getArgs().split(Constants.DELIMITER, Constants.LIMIT);
+        int key = Integer.parseInt(commandArgs[Constants.KEY_INDEX_IN_ARGS]);
+        String newValue = commandArgs[Constants.VALUE_INDEX_IN_ARGS];
+
+        storage.put(key, newValue);
+
+        msg.destroy();
+    }
+
     public static void main(String[] args) {
         if (args.length < Constants.QUANTITY_OF_INTERVAL_ARGS) {
             System.err.println(Constants.NOT_ENOUGH_ARGS_ERROR_MESSAGE);
@@ -72,23 +92,11 @@ public class Storage {
                 int commandType = command.getCommandType();
 
                 if (commandType == Command.GET_COMMAND_TYPE) {
-                    int key = Integer.parseInt(command.getArgs());
-                    String value = storage.get(key);
-
-                    Command resp = new Command(Command.RESPONSE_COMMAND_TYPE, value);
-
-                    msg.getLast().reset(resp.toString());
-                    msg.send(notifier);
+                    processGetRequest();
                 }
 
                 if (commandType == Command.PUT_COMMAND_TYPE) {
-                    String[] commandArgs = command.getArgs().split(Constants.DELIMITER, Constants.LIMIT);
-                    int key = Integer.parseInt(commandArgs[Constants.KEY_INDEX_IN_ARGS]);
-                    String newValue = commandArgs[Constants.VALUE_INDEX_IN_ARGS];
-
-                    storage.put(key, newValue);
-
-                    msg.destroy();
+                    processPutRequest();
                 }
             }
         }
