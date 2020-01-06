@@ -11,8 +11,8 @@ public class CentralProxy {
     private static final Map<ZFrame, StorageInfo> storages = new HashMap<>();
 
     private static void removeIrrelevantStorages() {
-        for (StorageInfo storage : storages) {
-            
+        for (Map.Entry storage : storages) {
+
         }
     }
 
