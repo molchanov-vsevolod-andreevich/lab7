@@ -95,7 +95,7 @@ public class CentralProxy {
                         }
                     }
 
-                    if (!isKeyValid) {
+                    if (isKeyValid) {
                         msg.getLast().reset("Key is not Valid");
                     } else {
                         msg.getLast().reset("Value has been putted");
