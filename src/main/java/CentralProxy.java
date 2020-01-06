@@ -38,12 +38,9 @@ public class CentralProxy {
 
         System.out.println("Proxy server has been launched and connected");
 
-        ZMQ.Poller items = context.poller (2);
+        ZMQ.Poller items = context.poller(2);
         items.register(client, ZMQ.Poller.POLLIN);
         items.register(storage, ZMQ.Poller.POLLIN);
-
-        int startIdx = 0;
-        int endIdx = -1;
 
         while (!Thread.currentThread().isInterrupted()) {
             items.poll();
@@ -103,28 +100,6 @@ public class CentralProxy {
                         msg.send(client);
                     }
                 }
-//                String[] split = cmd.split(" ");
-//
-//                String commandType = split[0];
-//                if (commandType.equals("GET")) {
-//                    int key = Integer.parseInt(split[1]);
-//                    if (key >= startIdx && key <= endIdx) {
-//
-//                    }
-//                } else if (commandType.equals("SET")) {
-//
-//                }
-//                System.out.println("first " + msg.getFirst());
-//                ZMsg resp = ZMsg.newStringMsg();
-//                resp.getFirst().reset(msg.getFirst());
-//                resp.getLast().reset(cmd);
-//                msg.getLast().reset(String.valueOf(msg.getFirst()));
-//                resp.getLast().reset(cmd);
-//                ZFrame resp = msg.unwrap();
-//                resp.send(client);
-//                clientAddress.send();
-//                msg.getLast().reset(cmd);
-//                msg.send(client);
             }
 
             if (items.pollin(1)) {
