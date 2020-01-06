@@ -80,7 +80,7 @@ public class CentralProxy {
 
     private static void processNotifyMsg(Command command, ZMsg msg) {
         ZFrame storageID = msg.unwrap();
-        System.out.println(command.prettyPrinting());
+        System.out.println(command);
         storages.putIfAbsent(storageID, new StorageInfo(command.getArgs()));
         storages.get(storageID).setLastNotificationTime(System.currentTimeMillis());
     }
