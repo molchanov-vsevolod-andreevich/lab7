@@ -13,6 +13,7 @@ public class CentralProxy {
     private static final Map<ZFrame, StorageInfo> storages = new HashMap<>();
 
     private static void removeIrrelevantStorages() {
+        System.out.println("Removing");
         List<ZFrame> irrelevantStorages = new ArrayList<>();
 
         for (Map.Entry<ZFrame, StorageInfo> entry : storages.entrySet()) {
