@@ -3,7 +3,9 @@ import org.zeromq.ZFrame;
 import org.zeromq.ZMQ;
 import org.zeromq.ZMsg;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CentralProxy {
@@ -11,12 +13,18 @@ public class CentralProxy {
     private static final Map<ZFrame, StorageInfo> storages = new HashMap<>();
 
     private static void removeIrrelevantStorages() {
+        List<ZFrame> irrelevantStorages = new ArrayList<>();
+
         for (Map.Entry<ZFrame, StorageInfo> entry : storages.entrySet()) {
             StorageInfo storage = entry.getValue();
 
             if (storage.getLastNotificationTime() + (storages.size() + 1) * Constants.NOTIFICATION_TIMEOUT < System.currentTimeMillis()) {
-                storages.remove(entry.getKey());
+                irrelevantStorages.add(entry.getKey())
             }
+        }
+
+        for (ZFrame irrelevantStorage : irrelevantStorages) {
+            storages.remove(irrelevantStorage);
         }
     }
 
@@ -71,6 +79,7 @@ public class CentralProxy {
             }
 
             if (items.pollin(1)) {
+                System.out.println("Message");
                 ZMsg msg = ZMsg.recvMsg(storage);
 
                 Command command = new Command(msg.getLast().toString().split(Constants.DELIMITER, Constants.LIMIT));
