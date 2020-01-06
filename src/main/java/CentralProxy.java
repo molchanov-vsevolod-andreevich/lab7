@@ -19,7 +19,7 @@ public class CentralProxy {
             StorageInfo storage = entry.getValue();
 
             if (storage.getLastNotificationTime() + (storages.size() + 1) * Constants.NOTIFICATION_TIMEOUT < System.currentTimeMillis()) {
-                irrelevantStorages.add(entry.getKey())
+                irrelevantStorages.add(entry.getKey());
             }
         }
 
