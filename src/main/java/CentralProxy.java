@@ -43,7 +43,7 @@ public class CentralProxy {
         items.register(storage, ZMQ.Poller.POLLIN);
 
         while (!Thread.currentThread().isInterrupted()) {
-            items.poll();
+            items.poll(3000);
 
             removeIrrelevantStorages();
 
