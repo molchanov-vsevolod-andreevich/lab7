@@ -63,7 +63,7 @@ public class CentralProxy {
                         StorageInfo storageInfo = entry.getValue();
 
                         if (key >= storageInfo.getStartIdx() && key <= storageInfo.getEndIdx()) {
-                            entry.getKey().send(storage, );
+                            entry.getKey().send(storage, 0);
 
                         }
                     }
