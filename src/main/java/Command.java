@@ -85,19 +85,18 @@ public class Command {
 
     public String prettyPrinting() {
         String commandName;
-        switch (commandType) {
-            case NOTIFY_COMMAND_TYPE:
-                commandName = "NOTIFY";
-            case PUT_COMMAND_TYPE:
-                commandName = "PUT";
-            case GET_COMMAND_TYPE:
-                commandName = "GET";
-            case QUIT_COMMAND_TYPE:
-                commandName = "QUIT";
-            case RESPONSE_COMMAND_TYPE:
-                commandName = "RESPONSE";
-            default:
-                commandName = "INVALID";
+        if (commandType == NOTIFY_COMMAND_TYPE) {
+            commandName = "NOTIFY";
+        } else if (commandType == PUT_COMMAND_TYPE) {
+            commandName = "PUT";
+        } else if (commandType == GET_COMMAND_TYPE) {
+            commandName = "GET";
+        } else if (commandType == QUIT_COMMAND_TYPE) {
+            commandName = "Q";
+        } else if (commandType == RESPONSE_COMMAND_TYPE) {
+            commandName = "RESPONSE";
+        } else {
+            commandName = "INVALID";
         }
 
         return commandName + " " + args;
