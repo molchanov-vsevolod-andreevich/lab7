@@ -57,6 +57,7 @@ public class CentralProxy {
 
                 int commandType = command.getCommandType();
                 if (commandType == Constants.GET_COMMAND_TYPE) {
+                    System.out.println(msg.unwrap().toString());
                     int key = Integer.parseInt(command.getArgs());
 
                     boolean isKeyValid = false;
@@ -138,6 +139,7 @@ public class CentralProxy {
                 }
 
                 if (commandType == Constants.RESPONSE_COMMAND_TYPE) {
+                    System.out.println(msg.unwrap().toString());
                     String resp = command.getArgs();
                     msg.getLast().reset(resp);
                     msg.send(client);
