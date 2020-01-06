@@ -57,7 +57,7 @@ public class CentralProxy {
 
                 int commandType = command.getCommandType();
                 if (commandType == Constants.GET_COMMAND_TYPE) {
-                    System.out.println(msg.unwrap().toString());
+                    System.out.println(msg.getFirst());
                     int key = Integer.parseInt(command.getArgs());
 
                     boolean isKeyValid = false;
