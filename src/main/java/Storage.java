@@ -7,6 +7,8 @@ import java.util.Map;
 
 public class Storage {
 
+    private static ZMQ.Socket notifier;
+
     private static long timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;
     private static int startIdx;
     private static int endIdx;
@@ -21,6 +23,14 @@ public class Storage {
         int argsLen = args.length;
         for (int i = Constants.FIRST_VALUE_INDEX_IN_ARGS, j = startIdx; i < argsLen; i++, j++) {
             storage.put(j, args[i]);
+        }
+    }
+
+    private static void notifyProxy() {
+        if (System.currentTimeMillis() == timeToNofification) {
+            Command command = new Command(Command.NOTIFY_COMMAND_TYPE, startIdx + " " + endIdx);
+            notifier.send(command.toString(), Constants.DEFAULT_ZMQ_FLAG);
+            timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;
         }
     }
 
@@ -42,18 +52,14 @@ public class Storage {
         
         ZMQ.Context context = ZMQ.context(Constants.IO_THREADS);
 
-        ZMQ.Socket notifier = context.socket(SocketType.DEALER);
+        notifier = context.socket(SocketType.DEALER);
         notifier.connect (Constants.STORAGE_ADDRESS);
 
         System.out.println(Constants.START_STORAGE_MESSAGE);
 
         while (!Thread.currentThread().isInterrupted()) {
 
-            if (System.currentTimeMillis() == timeToNofification) {
-                Command command = new Command(Command.NOTIFY_COMMAND_TYPE, startIdx + " " + endIdx);
-                notifier.send(command.toString(), Constants.DEFAULT_ZMQ_FLAG);
-                timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;
-            }
+            notifyProxy();
 
             ZMsg msg = ZMsg.recvMsg(notifier, Constants.DONT_WAIT);
 
