@@ -19,6 +19,11 @@ public class Command {
     static final int COMMAND_TYPE_INDEX = 0;
     static final int ARGS_INDEX = 0;
 
+    // Responses
+    static final String KEY_ISNT_VALID_RESPONSE = "Key is not Valid";
+    static final String VALUE_PUTTED_RESPONSE = "Value has been putted";
+
+
     private int commandType;
     private String args;
 

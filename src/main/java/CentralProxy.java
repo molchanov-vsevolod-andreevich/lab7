@@ -54,11 +54,11 @@ public class CentralProxy {
                 ZMsg msg = ZMsg.recvMsg(client);
 
                 Command command = new Command(msg.getLast().toString().split(Constants.DELIMITER, Constants.LIMIT));
+                System.out.println(msg.getFirst() + ": " + command.prettyPrinting());
 
                 int commandType = command.getCommandType();
 
                 if (commandType == Command.GET_COMMAND_TYPE) {
-                    System.out.println("GET client: " + msg.getFirst());
                     int key = Integer.parseInt(command.getArgs());
 
                     boolean isKeyValid = false;
@@ -67,8 +67,6 @@ public class CentralProxy {
                         StorageInfo storageInfo = entry.getValue();
 
                         if (key >= storageInfo.getStartIdx() && key <= storageInfo.getEndIdx()) {
-                            System.out.println("Store: " + entry.getKey());
-                            System.out.println("Store message: " + msg.getFirst());
                             entry.getKey().send(storage, ZFrame.REUSE + ZFrame.MORE);
                             msg.send(storage, Constants.DONT_DESTROY);
                             isKeyValid = true;
@@ -77,7 +75,7 @@ public class CentralProxy {
                     }
 
                     if (!isKeyValid) {
-                        msg.getLast().reset("Key is not Valid");
+                        msg.getLast().reset(Command.KEY_ISNT_VALID_RESPONSE);
                         msg.send(client);
                     }
                 }
@@ -85,7 +83,7 @@ public class CentralProxy {
                 if (commandType == Command.PUT_COMMAND_TYPE) {
                     String[] commandArgs = command.getArgs().split(Constants.DELIMITER, Constants.LIMIT);
 
-                    int key = Integer.parseInt(commandArgs[0]);
+                    int key = Integer.parseInt(commandArgs[Constants.KEY_INDEX_IN_ARGS]);
 
                     boolean isKeyValid = false;
 
@@ -93,16 +91,16 @@ public class CentralProxy {
                         StorageInfo storageInfo = entry.getValue();
 
                         if (key >= storageInfo.getStartIdx() && key <= storageInfo.getEndIdx()) {
-                            entry.getKey().send(storage, ZFrame.REUSE + ZFrame.MORE);
+                            entry.getKey().send(storage, Constants.REUSE_AND_MORE_ZMQ_FLAG);
                             msg.send(storage, Constants.DONT_DESTROY);
                             isKeyValid = true;
                         }
                     }
 
                     if (isKeyValid) {
-                        msg.getLast().reset("Value has been putted");
+                        msg.getLast().reset(Command.VALUE_PUTTED_RESPONSE);
                     } else {
-                        msg.getLast().reset("Key is not Valid");
+                        msg.getLast().reset(Command.KEY_ISNT_VALID_RESPONSE);
                     }
                     msg.send(client);
                 }
@@ -112,6 +110,7 @@ public class CentralProxy {
                 ZMsg msg = ZMsg.recvMsg(storage, Constants.DONT_WAIT);
 
                 Command command = new Command(msg.getLast().toString().split(Constants.DELIMITER, Constants.LIMIT));
+                System.out.println(msg.getFirst() + ": " + command.prettyPrinting());
 
                 int commandType = command.getCommandType();
 
@@ -124,12 +123,10 @@ public class CentralProxy {
                 if (commandType == Command.RESPONSE_COMMAND_TYPE) {
                     msg.remove();
                     String resp = command.getArgs();
-                    System.out.println("GET storage: " + msg.getFirst());
                     msg.getLast().reset(resp);
                     msg.send(client);
                 }
             }
-            System.out.println(storages.size());
         }
 
         client.close();

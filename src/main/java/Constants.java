@@ -1,4 +1,4 @@
-import java.time.Duration;
+import org.zeromq.ZFrame;
 
 class Constants {
     // Addresses
@@ -18,6 +18,7 @@ class Constants {
 
     // ZMQ Flags
     static final int DEFAULT_ZMQ_FLAG = 0;
+    static final int REUSE_AND_MORE_ZMQ_FLAG = ZFrame.REUSE + ZFrame.MORE;
 
     // Poller constants
     static final int POLLER_SIZE = 2;
