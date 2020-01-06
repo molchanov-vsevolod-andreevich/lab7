@@ -35,5 +35,6 @@ class Constants {
 
     // Poller constants
     static final int POLLER_SIZE = 2;
-    
+    static final int POLLER_CLIENT_INDEX = 0;
+    static final int POLLER_STORAGE_INDEX = 1;
 }

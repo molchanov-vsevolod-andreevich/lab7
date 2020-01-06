@@ -47,7 +47,7 @@ public class CentralProxy {
 
             removeIrrelevantStorages();
 
-            if (items.pollin(0)) {
+            if (items.pollin(Constants.POLLER_CLIENT_INDEX)) {
                 ZMsg msg = ZMsg.recvMsg(client);
 
                 Command command = new Command(msg.getLast().toString().split(Constants.DELIMITER, Constants.LIMIT));
@@ -104,7 +104,7 @@ public class CentralProxy {
                 }
             }
 
-            if (items.pollin(1)) {
+            if (items.pollin(Constants.POLLER_STORAGE_INDEX)) {
                 ZMsg msg = ZMsg.recvMsg(storage, false);
 
                 Command command = new Command(msg.getLast().toString().split(Constants.DELIMITER, Constants.LIMIT));
