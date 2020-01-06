@@ -31,7 +31,6 @@ public class Client {
             requester.send(command.toString(), 0);
 
             String reply = requester.recvStr(0);
-
             System.out.println(reply);
 
         }

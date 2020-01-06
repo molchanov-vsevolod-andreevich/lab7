@@ -10,6 +10,12 @@ public class CentralProxy {
 
     private static final Map<ZFrame, StorageInfo> storages = new HashMap<>();
 
+    private static void removeIrrelevantStorages() {
+        for (StorageInfo storage : storages) {
+            
+        }
+    }
+
     public static void main(String[] args) {
         ZMQ.Context context = ZMQ.context(1);
 
@@ -81,7 +87,7 @@ public class CentralProxy {
                 }
             }
 
-            removeIrrelevant
+            removeIrrelevantStorages();
         }
     }
 }

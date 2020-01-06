@@ -12,12 +12,12 @@ public class Storage {
     private static int endIdx;
     private static final Map<Integer, String> storage = new HashMap<>();
 
-    static void setInterval(String[] args) {
+    private static void setInterval(String[] args) {
         startIdx = Integer.parseInt(args[0]);
         endIdx = Integer.parseInt(args[1]);
     }
 
-    static void setValues(String[] args) {
+    private static void setValues(String[] args) {
         int argsLen = args.length;
         for (int i = 2, j = 0; i < argsLen; i++, j++) {
             storage.put(startIdx + j, args[i]);
