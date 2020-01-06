@@ -20,12 +20,12 @@ public class Client {
 
             int commandType = command.getCommandType();
 
-            if (commandType == Constants.INVALID_COMMAND_TYPE) {
+            if (commandType == Command.INVALID_COMMAND_TYPE) {
                 System.out.println(Constants.INVALID_COMMAND_MESSAGE);
                 continue;
             }
 
-            if (commandType == Constants.QUIT_COMMAND_TYPE) {
+            if (commandType == Command.QUIT_COMMAND_TYPE) {
                 break;
             }
 

@@ -13,13 +13,13 @@ public class Storage {
     private static final Map<Integer, String> storage = new HashMap<>();
 
     private static void setInterval(String[] args) {
-        startIdx = Integer.parseInt(args[0]);
-        endIdx = Integer.parseInt(args[1]);
+        startIdx = Integer.parseInt(args[Constants.START_INDEX_IN_ARGS]);
+        endIdx = Integer.parseInt(args[Constants.END_INDEX_IN_ARGS]);
     }
 
     private static void setValues(String[] args) {
         int argsLen = args.length;
-        for (int i = 2, j = startIdx; i < argsLen; i++, j++) {
+        for (int i = Constants.FIRST_VALUE_INDEX_IN_ARGS, j = startIdx; i < argsLen; i++, j++) {
             storage.put(j, args[i]);
         }
     }
@@ -49,12 +49,12 @@ public class Storage {
         while (!Thread.currentThread().isInterrupted()) {
 
             if (System.currentTimeMillis() == timeToNofification) {
-                Command command = new Command(Constants.NOTIFY_COMMAND_TYPE, startIdx + " " + endIdx);
+                Command command = new Command(Command.NOTIFY_COMMAND_TYPE, startIdx + " " + endIdx);
                 notifier.send(command.toString(), Constants.DEFAULT_ZMQ_FLAG);
                 timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;
             }
 
-            ZMsg msg = ZMsg.recvMsg(notifier, false);
+            ZMsg msg = ZMsg.recvMsg(notifier, Constants.DONT_WAIT);
 
             if (msg != null) {
                 String[] commandTypeAndArgs = msg.getLast().toString().split(Constants.DELIMITER, Constants.LIMIT);
@@ -63,18 +63,18 @@ public class Storage {
                 System.out.println(command.toString());
 
                 int commandType = command.getCommandType();
-                if (commandType == Constants.GET_COMMAND_TYPE) {
+                if (commandType == Command.GET_COMMAND_TYPE) {
                     int key = Integer.parseInt(command.getArgs());
                     String value = storage.get(key);
 
-                    Command resp = new Command(Constants.RESPONSE_COMMAND_TYPE, value);
+                    Command resp = new Command(Command.RESPONSE_COMMAND_TYPE, value);
 
                     System.out.println(msg.getFirst());
                     msg.getLast().reset(resp.toString());
                     msg.send(notifier);
                 }
 
-                if (commandType == Constants.PUT_COMMAND_TYPE) {
+                if (commandType == Command.PUT_COMMAND_TYPE) {
                     String[] commandArgs = command.getArgs().split(Constants.DELIMITER, Constants.LIMIT);
                     int key = Integer.parseInt(commandArgs[0]);
                     String newValue = commandArgs[1];

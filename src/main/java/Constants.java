@@ -16,25 +16,24 @@ class Constants {
     static final String START_STORAGE_MESSAGE = "Storage has been launched and connected";
     static final String START_PROXY_MESSAGE = "Proxy server has been launched and connected";
 
-    // Command Types
-    static final int INVALID_COMMAND_TYPE = 0;
-    static final int NOTIFY_COMMAND_TYPE = 1;
-    static final int PUT_COMMAND_TYPE = 2;
-    static final int GET_COMMAND_TYPE = 3;
-    static final int QUIT_COMMAND_TYPE = 4;
-    static final int RESPONSE_COMMAND_TYPE = 5;
-
     // ZMQ Flags
     static final int DEFAULT_ZMQ_FLAG = 0;
+
+    // Poller constants
+    static final int POLLER_SIZE = 2;
+    static final int POLLER_CLIENT_INDEX = 0;
+    static final int POLLER_STORAGE_INDEX = 1;
 
     // Other constants
     static final String DELIMITER = " ";
     static final int LIMIT = 2;
     static final int IO_THREADS = 1;
     static final long NOTIFICATION_TIMEOUT = 3000;
+    static final boolean DONT_WAIT = false;
+    static final boolean DONT_DESTROY = false;
 
-    // Poller constants
-    static final int POLLER_SIZE = 2;
-    static final int POLLER_CLIENT_INDEX = 0;
-    static final int POLLER_STORAGE_INDEX = 1;
+    static final int START_INDEX_IN_ARGS = 0;
+    static final int END_INDEX_IN_ARGS = 1;
+    static final int FIRST_VALUE_INDEX_IN_ARGS = 2;
+    static final int QU = 2;
 }

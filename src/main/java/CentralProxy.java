@@ -53,7 +53,7 @@ public class CentralProxy {
                 Command command = new Command(msg.getLast().toString().split(Constants.DELIMITER, Constants.LIMIT));
 
                 int commandType = command.getCommandType();
-                if (commandType == Constants.GET_COMMAND_TYPE) {
+                if (commandType == Command.GET_COMMAND_TYPE) {
                     System.out.println("GET client: " + msg.getFirst());
                     int key = Integer.parseInt(command.getArgs());
 
@@ -66,7 +66,7 @@ public class CentralProxy {
                             System.out.println("Store: " + entry.getKey());
                             System.out.println("Store message: " + msg.getFirst());
                             entry.getKey().send(storage, ZFrame.REUSE + ZFrame.MORE);
-                            msg.send(storage, false);
+                            msg.send(storage, Constants.DONT_DESTROY);
                             isKeyValid = true;
                             break;
                         }
@@ -78,7 +78,7 @@ public class CentralProxy {
                     }
                 }
 
-                if (commandType == Constants.PUT_COMMAND_TYPE) {
+                if (commandType == Command.PUT_COMMAND_TYPE) {
                     String[] commandArgs = command.getArgs().split(Constants.DELIMITER, Constants.LIMIT);
 
                     int key = Integer.parseInt(commandArgs[0]);
@@ -90,7 +90,7 @@ public class CentralProxy {
 
                         if (key >= storageInfo.getStartIdx() && key <= storageInfo.getEndIdx()) {
                             entry.getKey().send(storage, ZFrame.REUSE + ZFrame.MORE);
-                            msg.send(storage, false);
+                            msg.send(storage, Constants.DONT_DESTROY);
                             isKeyValid = true;
                         }
                     }
@@ -105,19 +105,19 @@ public class CentralProxy {
             }
 
             if (items.pollin(Constants.POLLER_STORAGE_INDEX)) {
-                ZMsg msg = ZMsg.recvMsg(storage, false);
+                ZMsg msg = ZMsg.recvMsg(storage, Constants.DONT_WAIT);
 
                 Command command = new Command(msg.getLast().toString().split(Constants.DELIMITER, Constants.LIMIT));
 
                 int commandType = command.getCommandType();
 
-                if (commandType == Constants.NOTIFY_COMMAND_TYPE) {
+                if (commandType == Command.NOTIFY_COMMAND_TYPE) {
                     ZFrame storageID = msg.unwrap();
                     storages.putIfAbsent(storageID, new StorageInfo(command.getArgs()));
                     storages.get(storageID).setLastNotificationTime(System.currentTimeMillis());
                 }
 
-                if (commandType == Constants.RESPONSE_COMMAND_TYPE) {
+                if (commandType == Command.RESPONSE_COMMAND_TYPE) {
                     msg.remove();
                     String resp = command.getArgs();
                     System.out.println("GET storage: " + msg.getFirst());

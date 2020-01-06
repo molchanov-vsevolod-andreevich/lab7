@@ -1,5 +1,13 @@
 public class Command {
 
+    // Command Types
+    static final int INVALID_COMMAND_TYPE = 0;
+    static final int NOTIFY_COMMAND_TYPE = 1;
+    static final int PUT_COMMAND_TYPE = 2;
+    static final int GET_COMMAND_TYPE = 3;
+    static final int QUIT_COMMAND_TYPE = 4;
+    static final int RESPONSE_COMMAND_TYPE = 5;
+
     private int commandType;
     private String args;
 
@@ -11,18 +19,18 @@ public class Command {
         if (commandName.equals("PUT") &&
                 splittedCmd.length == 3 &&
                 isInteger(splittedCmd[1])) {
-            commandType = Constants.PUT_COMMAND_TYPE;
+            commandType = PUT_COMMAND_TYPE;
             args = splittedCmd[1] + " " + splittedCmd[2];
         } else if (commandName.equals("GET") &&
                 splittedCmd.length == 2 &&
                 isInteger(splittedCmd[1])) {
-            commandType = Constants.GET_COMMAND_TYPE;
+            commandType = GET_COMMAND_TYPE;
             args = splittedCmd[1];
         } else if (commandName.equals("Q") &&
                 splittedCmd.length == 1) {
-            commandType = Constants.QUIT_COMMAND_TYPE;
+            commandType = QUIT_COMMAND_TYPE;
         } else {
-            commandType = Constants.INVALID_COMMAND_TYPE;
+            commandType = INVALID_COMMAND_TYPE;
         }
     }
 
