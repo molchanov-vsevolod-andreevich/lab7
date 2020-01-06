@@ -23,6 +23,8 @@ class Constants {
     static final int QUIT_COMMAND_TYPE = 4;
     static final int RESPONSE_COMMAND_TYPE = 5;
 
+    // ZeroFlags
+
     // HTTP query parameters
     static final String URL_PARAMETER_NAME = "url";
     static final String COUNT_PARAMETER_NAME = "count";
