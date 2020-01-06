@@ -67,7 +67,7 @@ public class CentralProxy {
 
                 if (commandType == Constants.NOTIFY_COMMAND_TYPE) {
                     ZFrame storageID = msg.unwrap();
-                    if (storages.containsKey(storageID)) { // maybe easier to just put without 
+                    if (storages.containsKey(storageID)) { // maybe easier to just put without checking??
                         storages.get(storageID).setLastNotificationTime(System.currentTimeMillis());
                     } else {
                         storages.put(storageID, new StorageInfo(command.getArgs(), System.currentTimeMillis()));
@@ -80,6 +80,8 @@ public class CentralProxy {
                     msg.send(client);
                 }
             }
+
+            
         }
     }
 }
