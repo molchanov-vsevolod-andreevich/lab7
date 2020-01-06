@@ -14,7 +14,7 @@ public class CentralProxy {
         for (Map.Entry<ZFrame, StorageInfo> entry : storages.entrySet()) {
             StorageInfo storage = entry.getValue();
 
-            if (storage.getLastNotificationTime() + storages.size() * Constants.NOTIFICATION_TIMEOUT < System.currentTimeMillis()) {
+            if (storage.getLastNotificationTime() + (storages.size() + 1) * Constants.NOTIFICATION_TIMEOUT < System.currentTimeMillis()) {
                 storages.remove(entry.getKey());
             }
         }
