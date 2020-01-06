@@ -66,7 +66,7 @@ public class CentralProxy {
                             System.out.println("Store: " + entry.getKey());
                             System.out.println("Store message: " + msg.getFirst());
                             entry.getKey().send(storage, ZFrame.REUSE + ZFrame.MORE);
-                            msg.send(storage);
+                            msg.send(storage, false);
                             isKeyValid = true;
                             break;
                         }
@@ -90,7 +90,7 @@ public class CentralProxy {
 
                         if (key >= storageInfo.getStartIdx() && key <= storageInfo.getEndIdx()) {
                             entry.getKey().send(storage, ZFrame.REUSE + ZFrame.MORE);
-                            msg.send(storage);
+                            msg.send(storage, false);
                             isKeyValid = true;
                         }
                     }
