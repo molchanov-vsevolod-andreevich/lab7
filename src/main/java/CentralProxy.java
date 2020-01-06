@@ -78,6 +78,7 @@ public class CentralProxy {
                 int commandType = command.getCommandType();
 
                 if (commandType == Constants.NOTIFY_COMMAND_TYPE) {
+                    System.out.println("YES");
                     ZFrame storageID = msg.unwrap();
                     storages.putIfAbsent(storageID, new StorageInfo(command.getArgs()));
                     storages.get(storageID).setLastNotificationTime(System.currentTimeMillis());
