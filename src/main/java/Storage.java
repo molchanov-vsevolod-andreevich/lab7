@@ -70,6 +70,7 @@ public class Storage {
                 System.out.println(msg.getFirst() + ": " + command.prettyPrinting());
 
                 int commandType = command.getCommandType();
+
                 if (commandType == Command.GET_COMMAND_TYPE) {
                     int key = Integer.parseInt(command.getArgs());
                     String value = storage.get(key);

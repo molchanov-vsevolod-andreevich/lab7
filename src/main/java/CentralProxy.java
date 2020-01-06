@@ -56,6 +56,7 @@ public class CentralProxy {
                 Command command = new Command(msg.getLast().toString().split(Constants.DELIMITER, Constants.LIMIT));
 
                 int commandType = command.getCommandType();
+                
                 if (commandType == Command.GET_COMMAND_TYPE) {
                     System.out.println("GET client: " + msg.getFirst());
                     int key = Integer.parseInt(command.getArgs());
