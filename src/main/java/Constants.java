@@ -3,6 +3,8 @@ import java.time.Duration;
 class Constants {
     // Server constants
     static final String HOST = "localhost";
+    static final String CLIENT_ADDRESS = "tcp://localhost:5559";
+    static final String STORAGE_ADDRESS = "tcp://localhost:5560";
 
     // Messages
     static final String NOT_ENOUGH_ARGS_ERROR_MESSAGE = "Not enough arguments. Run program with arguments [startIdx] [endIdx] " +
@@ -11,6 +13,7 @@ class Constants {
             "\tPUT [index] [value]\n" +
             "\tGET [index]\n" +
             "\tQ for quit";
+    static final String START_CLIENT_MESSAGE = "Сlient has been launched and connected";
 
     // Command Types
     static final int INVALID_COMMAND_TYPE = 0;

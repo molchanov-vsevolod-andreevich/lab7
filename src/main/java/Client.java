@@ -9,8 +9,8 @@ public class Client {
         ZMQ.Context context = ZMQ.context(1);
 
         ZMQ.Socket requester = context.socket(SocketType.REQ);
-        requester.connect("tcp://localhost:5559");
-        System.out.println("Сlient has been launched and connected");
+        requester.connect(Constants.CLIENT_ADDRESS);
+        System.out.println(Constants.START_CLIENT_MESSAGE);
 
         Scanner in = new Scanner(System.in);
 

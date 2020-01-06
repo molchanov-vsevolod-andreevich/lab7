@@ -33,8 +33,8 @@ public class CentralProxy {
 
         ZMQ.Socket client = context.socket(SocketType.ROUTER);
         ZMQ.Socket storage = context.socket(SocketType.ROUTER);
-        client.bind("tcp://localhost:5559");
-        storage.bind("tcp://localhost:5560");
+        client.bind(Constants.CLIENT_ADDRESS);
+        storage.bind(Constants.STORAGE_ADDRESS);
 
         System.out.println("Proxy server has been launched and connected");
 
