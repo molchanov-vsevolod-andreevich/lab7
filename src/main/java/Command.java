@@ -17,7 +17,7 @@ public class Command {
     static final int KEY_INDEX_IN_COMMAND = 1;
     static final int VALUE_INDEX_IN_COMMAND = 2;
     static final int COMMAND_TYPE_INDEX = 0;
-    static final int ARGS_INDEX = 0;
+    static final int ARGS_INDEX = 1;
 
     // Responses
     static final String KEY_ISNT_VALID_RESPONSE = "Key is not Valid";
