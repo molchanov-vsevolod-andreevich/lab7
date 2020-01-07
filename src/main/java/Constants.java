@@ -25,14 +25,7 @@ class Constants {
     static final int POLLER_CLIENT_INDEX = 0;
     static final int POLLER_STORAGE_INDEX = 1;
 
-    // Other constants
-    static final String DELIMITER = " ";
-    static final int LIMIT = 2;
-    static final int IO_THREADS = 1;
-    static final long NOTIFICATION_TIMEOUT = 3000;
-    static final boolean DONT_WAIT = false;
-    static final boolean DONT_DESTROY = false;
-
+    // Indexes
     static final int START_INDEX_IN_ARGS = 0;
     static final int END_INDEX_IN_ARGS = 1;
     static final int FIRST_VALUE_INDEX_IN_ARGS = 2;
@@ -40,4 +33,12 @@ class Constants {
     static final int KEY_INDEX_IN_ARGS = 0;
     static final int VALUE_INDEX_IN_ARGS = 1;
     static final int COMMAND_NAME_INDEX = 0;
+
+    // Other constants
+    static final String DELIMITER = " ";
+    static final int LIMIT = 2;
+    static final int IO_THREADS = 1;
+    static final long NOTIFICATION_TIMEOUT = 3000;
+    static final boolean DONT_WAIT = false;
+    static final boolean DONT_DESTROY = false;
 }
