@@ -4,10 +4,7 @@ import org.zeromq.ZFrame;
 import org.zeromq.ZMQ;
 import org.zeromq.ZMsg;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CentralProxy {
 
@@ -59,6 +56,7 @@ public class CentralProxy {
 
             msg.send(client);
         } else {
+            Random randomSuitableStorageIdx = 
             entry.getKey().send(storage, ZFrame.REUSE + ZFrame.MORE);
 
             msg.send(storage, Constants.DONT_DESTROY);
