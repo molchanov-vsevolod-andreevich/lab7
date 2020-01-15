@@ -78,6 +78,10 @@ public class Storage {
 
         while (!Thread.currentThread().isInterrupted()) {
 
+            if (System.currentTimeMillis() > timeToNofification) {
+                System.out.println("Lol");
+            }
+
             if (System.currentTimeMillis() == timeToNofification) {
                 notifyProxy();
             }
