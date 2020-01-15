@@ -30,6 +30,8 @@ public class Command {
     public Command(String cmd) {
         String[] splittedCmd = cmd.split(Constants.DELIMITER, Constants.LIMIT);
 
+        System.out.println(splittedCmd);
+
         String commandName = splittedCmd[Constants.COMMAND_NAME_INDEX];
 
         if (commandName.equals("PUT") &&
