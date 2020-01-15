@@ -31,6 +31,7 @@ public class CentralProxy {
             storages.remove(irrelevantStorage);
             System.out.println("Storage with id " + irrelevantStorage + " has been deleted");
         }
+        System.out.println();
 
     }
 
