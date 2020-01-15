@@ -28,7 +28,7 @@ public class Command {
     private String args;
 
     public Command(String cmd) {
-        String[] splittedCmd = cmd.split(Constants.DELIMITER);
+        String[] splittedCmd = cmd.split(Constants.DELIMITER, Constants.LIMIT);
 
         String commandName = splittedCmd[Constants.COMMAND_NAME_INDEX];
 
