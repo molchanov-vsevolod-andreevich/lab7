@@ -29,7 +29,7 @@ public class CentralProxy {
 
         for (ZFrame irrelevantStorage : irrelevantStorages) {
             storages.remove(irrelevantStorage);
-            System.out.println("Storage with id " + irrelevantStorage + " have been deleted");
+            System.out.println("Storage with id " + irrelevantStorage + " has been deleted");
         }
 
     }
