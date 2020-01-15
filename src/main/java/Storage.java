@@ -10,7 +10,7 @@ public class Storage {
     private static ZMQ.Socket notifier;
 
     private static long timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;
-    private static int startIdx
+    private static int startIdx;
     private static int endIdx;
     private static final Map<Integer, String> storage = new HashMap<>();
 
