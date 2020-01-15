@@ -41,6 +41,8 @@ public class CentralProxy {
 
         boolean isKeyValid = false;
 
+        
+
         for (Map.Entry<ZFrame, StorageInfo> entry : storages.entrySet()) {
             StorageInfo storageInfo = entry.getValue();
 
