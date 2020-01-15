@@ -11,7 +11,7 @@ class Constants {
     static final String INVALID_COMMAND_MESSAGE = "Invalid command or arguments. Use following commands:\n" +
             "\tPUT [index] [value]\n" +
             "\tGET [index]\n" +
-            "\tQ for quit";
+            "\tQ for quit\n";
     static final String START_CLIENT_MESSAGE = "Сlient has been launched and connected";
     static final String START_STORAGE_MESSAGE = "Storage has been launched and connected";
     static final String START_PROXY_MESSAGE = "Proxy server has been launched and connected";
