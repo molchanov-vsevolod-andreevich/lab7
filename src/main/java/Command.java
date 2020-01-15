@@ -30,7 +30,9 @@ public class Command {
     public Command(String cmd) {
         String[] splittedCmd = cmd.split(Constants.DELIMITER, Constants.LIMIT);
 
-        System.out.println(splittedCmd);
+        for (String s : splittedCmd) {
+            System.out.println(s);
+        }
 
         String commandName = splittedCmd[Constants.COMMAND_NAME_INDEX];
 
