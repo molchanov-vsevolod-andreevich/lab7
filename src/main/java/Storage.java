@@ -28,9 +28,9 @@ public class Storage {
 
     private static void notifyProxy() {
         Command command = new Command(Command.NOTIFY_COMMAND_TYPE, startIdx + " " + endIdx);
-        System.out.println(command.prettyPrinting());
         notifier.send(command.toString(), Constants.DEFAULT_ZMQ_FLAG);
         timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;
+        System.out.println(command.prettyPrinting());
     }
 
     private static void processGetRequest(Command command, ZMsg msg) {
