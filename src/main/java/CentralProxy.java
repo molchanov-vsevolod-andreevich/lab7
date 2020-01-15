@@ -40,8 +40,6 @@ public class CentralProxy {
     private static void processGetRequest(Command command, ZMsg msg) {
         int key = Integer.parseInt(command.getArgs());
 
-        boolean isKeyValid = false;
-
         List<ZFrame> suitableStorageIndexes = new ArrayList<>();
 
         for (Map.Entry<ZFrame, StorageInfo> entry : storages.entrySet()) {
@@ -49,23 +47,22 @@ public class CentralProxy {
 
             if (key >= storageInfo.getStartIdx() && key <= storageInfo.getEndIdx()) {
                 System.out.println("Found suitable storage with id " + entry.getKey());
-                entry.getKey().send(storage, ZFrame.REUSE + ZFrame.MORE);
-
-                msg.send(storage, Constants.DONT_DESTROY);
-                System.out.println("Sent " + msg + " to Storage => " + command.prettyPrinting() + "\n");
-
-                isKeyValid = true;
-                break;
+                suitableStorageIndexes.add(entry.getKey());
             }
         }
 
-        if (!isKeyValid) {
+        if (suitableStorageIndexes.isEmpty()) {
             System.out.println(Command.KEY_ISNT_VALID_RESPONSE);
 
             msg.getLast().reset(Command.KEY_ISNT_VALID_RESPONSE);
             System.out.println("Sent " + msg + " to Client => " + Command.KEY_ISNT_VALID_RESPONSE + "\n");
 
             msg.send(client);
+        } else {
+            entry.getKey().send(storage, ZFrame.REUSE + ZFrame.MORE);
+
+            msg.send(storage, Constants.DONT_DESTROY);
+            System.out.println("Sent " + msg + " to Storage => " + command.prettyPrinting() + "\n");
         }
     }
 
