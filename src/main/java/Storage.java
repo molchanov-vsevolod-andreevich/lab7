@@ -30,16 +30,18 @@ public class Storage {
         Command command = new Command(Command.NOTIFY_COMMAND_TYPE, startIdx + " " + endIdx);
         notifier.send(command.toString(), Constants.DEFAULT_ZMQ_FLAG);
         timeToNofification = System.currentTimeMillis() + Constants.NOTIFICATION_TIMEOUT;
-        System.out.println("Sent " + command.prettyPrinting() + " to Proxy");
+        System.out.println("Sent " + command.prettyPrinting() + " to Proxy\n");
     }
 
     private static void processGetRequest(Command command, ZMsg msg) {
         int key = Integer.parseInt(command.getArgs());
         String value = storage.get(key);
+        System.out.println("Found value \"" + value + "\" by key " + key);
 
         Command resp = new Command(Command.RESPONSE_COMMAND_TYPE, value);
 
         msg.getLast().reset(resp.toString());
+        System.out.println("Sent " + msg + " to Proxy => " + command.prettyPrinting() + "\n");
         msg.send(notifier);
     }
 
@@ -49,8 +51,10 @@ public class Storage {
         String newValue = commandArgs[Constants.VALUE_INDEX_IN_ARGS];
 
         storage.put(key, newValue);
+        System.out.println("New value \"" + newValue + "\" putted by key " + key);
 
         msg.destroy();
+        System.out.println("Message destroyed\n");
     }
 
     public static void main(String[] args) {
@@ -88,7 +92,7 @@ public class Storage {
                 String[] commandTypeAndArgs = msg.getLast().toString().split(Constants.DELIMITER, Constants.LIMIT);
                 Command command = new Command(commandTypeAndArgs);
 
-                System.out.println(msg + ": " + command.prettyPrinting());
+                System.out.println("Proxy says " + msg + " => " + command.prettyPrinting());
 
                 int commandType = command.getCommandType();
 

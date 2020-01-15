@@ -40,6 +40,7 @@ public class CentralProxy {
             StorageInfo storageInfo = entry.getValue();
 
             if (key >= storageInfo.getStartIdx() && key <= storageInfo.getEndIdx()) {
+                System.out.println("Found suitable storage with id " + entry.getKey());
                 entry.getKey().send(storage, ZFrame.REUSE + ZFrame.MORE);
                 msg.send(storage, Constants.DONT_DESTROY);
                 isKeyValid = true;
@@ -114,7 +115,7 @@ public class CentralProxy {
                 ZMsg msg = ZMsg.recvMsg(client);
 
                 Command command = new Command(msg.getLast().toString().split(Constants.DELIMITER, Constants.LIMIT));
-                System.out.println(msg.getFirst() + ": " + command.prettyPrinting());
+                System.out.println("Client says " + msg + " => " + command.prettyPrinting());
 
                 int commandType = command.getCommandType();
 

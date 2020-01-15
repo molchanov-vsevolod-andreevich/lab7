@@ -33,7 +33,7 @@ public class Client {
             System.out.println("Sent " + command.prettyPrinting() + " to Proxy\n");
 
             String reply = requester.recvStr(Constants.DEFAULT_ZMQ_FLAG);
-            System.out.println(reply + "\n");
+            System.out.println("Got answer: " + reply + "\n");
 
         }
 
