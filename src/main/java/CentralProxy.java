@@ -94,15 +94,25 @@ public class CentralProxy {
 
     private static void processNotifyMsg(Command command, ZMsg msg) {
         ZFrame storageID = msg.unwrap();
-        int numberOfStorages = storages.size();
+        int prevNumberOfStorages = storages.size();
         storages.putIfAbsent(storageID, new StorageInfo(command.getArgs()));
         storages.get(storageID).setLastNotificationTime(System.currentTimeMillis());
+
+        if (storages.size() > prevNumberOfStorages) {
+            System.out.println("New storage with id " + storageID + " has been registered\n");
+        } else {
+            System.out.println("Timeout of storage with id " + storageID + " has been updated\n");
+        }
     }
 
     private static void processResponseMsg(Command command, ZMsg msg)  {
         msg.remove();
+        System.out.println("Storage id has been deleted from message " + msg);
+
         String resp = command.getArgs();
         msg.getLast().reset(resp);
+        System.out.println("Sent " + msg + " to Client => " + resp + "\n");
+
         msg.send(client);
     }
 
