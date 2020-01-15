@@ -42,7 +42,10 @@ public class CentralProxy {
             if (key >= storageInfo.getStartIdx() && key <= storageInfo.getEndIdx()) {
                 System.out.println("Found suitable storage with id " + entry.getKey());
                 entry.getKey().send(storage, ZFrame.REUSE + ZFrame.MORE);
+
+
                 msg.send(storage, Constants.DONT_DESTROY);
+
                 isKeyValid = true;
                 break;
             }
