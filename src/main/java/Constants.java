@@ -12,9 +12,9 @@ class Constants {
             "\tPUT [index] [value]\n" +
             "\tGET [index]\n" +
             "\tQ for quit\n";
-    static final String START_CLIENT_MESSAGE = "Сlient has been launched and connected";
-    static final String START_STORAGE_MESSAGE = "Storage has been launched and connected";
-    static final String START_PROXY_MESSAGE = "Proxy server has been launched and connected";
+    static final String START_CLIENT_MESSAGE = "Сlient has been launched and connected\n";
+    static final String START_STORAGE_MESSAGE = "Storage has been launched and connected\n";
+    static final String START_PROXY_MESSAGE = "Proxy server has been launched and connected\n";
 
     // ZMQ Flags
     static final int DEFAULT_ZMQ_FLAG = 0;
