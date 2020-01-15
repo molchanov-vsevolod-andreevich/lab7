@@ -56,7 +56,7 @@ public class CentralProxy {
 
             msg.send(client);
         } else {
-            Random randomSuitableStorageIdx = 
+            Random randomSuitableStorageIdx = new Random()
             entry.getKey().send(storage, ZFrame.REUSE + ZFrame.MORE);
 
             msg.send(storage, Constants.DONT_DESTROY);
