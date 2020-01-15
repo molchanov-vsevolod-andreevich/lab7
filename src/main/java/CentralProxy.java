@@ -37,18 +37,18 @@ public class CentralProxy {
     private static void processGetRequest(Command command, ZMsg msg) {
         int key = Integer.parseInt(command.getArgs());
 
-        List<ZFrame> suitableStorageIndexes = new ArrayList<>();
+        List<ZFrame> suitableStorageIds = new ArrayList<>();
 
         for (Map.Entry<ZFrame, StorageInfo> entry : storages.entrySet()) {
             StorageInfo storageInfo = entry.getValue();
 
             if (key >= storageInfo.getStartIdx() && key <= storageInfo.getEndIdx()) {
                 System.out.println("Found suitable storage with id " + entry.getKey());
-                suitableStorageIndexes.add(entry.getKey());
+                suitableStorageIds.add(entry.getKey());
             }
         }
 
-        if (suitableStorageIndexes.isEmpty()) {
+        if (suitableStorageIds.isEmpty()) {
             System.out.println(Command.KEY_ISNT_VALID_RESPONSE);
 
             msg.getLast().reset(Command.KEY_ISNT_VALID_RESPONSE);
@@ -56,8 +56,8 @@ public class CentralProxy {
 
             msg.send(client);
         } else {
-            int randomSuitableStorageIdx = new Random().nextInt(suitableStorageIndexes.size());
-            ZFrame randomSuitableStorage = 
+            int randomSuitableStorageIdx = new Random().nextInt(suitableStorageIds.size());
+            ZFrame randomSuitableStorageId =  
             entry.getKey().send(storage, ZFrame.REUSE + ZFrame.MORE);
 
             msg.send(storage, Constants.DONT_DESTROY);
