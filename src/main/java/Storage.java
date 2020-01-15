@@ -41,7 +41,7 @@ public class Storage {
         Command resp = new Command(Command.RESPONSE_COMMAND_TYPE, value);
 
         msg.getLast().reset(resp.toString());
-        System.out.println("Sent " + msg + " to Proxy => " + command.prettyPrinting() + "\n");
+        System.out.println("Sent " + msg + " to Proxy => " + resp.prettyPrinting() + "\n");
         msg.send(notifier);
     }
 
