@@ -88,7 +88,7 @@ public class Storage {
                 String[] commandTypeAndArgs = msg.getLast().toString().split(Constants.DELIMITER, Constants.LIMIT);
                 Command command = new Command(commandTypeAndArgs);
 
-                System.out.println(msg.getFirst() + ": " + command.prettyPrinting());
+                System.out.println(msg + ": " + command.prettyPrinting());
 
                 int commandType = command.getCommandType();
 
