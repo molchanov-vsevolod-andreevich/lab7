@@ -5,6 +5,11 @@
 ## Папка start
 
 Запускаются следующие классы:
-* 
+* Storage
+* Storage2
+* Storage3
+* Client
+* Client2
+* Central
 
 В последних трёх снимках показаны аргументы для Storage, Storage2 и Storage3
