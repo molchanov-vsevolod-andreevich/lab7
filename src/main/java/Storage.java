@@ -72,7 +72,7 @@ public class Storage {
         ZMQ.Context context = ZMQ.context(Constants.IO_THREADS);
 
         notifier = context.socket(SocketType.DEALER);
-        notifier.connect (Constants.STORAGE_ADDRESS);
+        notifier.connect(Constants.STORAGE_ADDRESS);
 
         System.out.println(Constants.START_STORAGE_MESSAGE);
 
