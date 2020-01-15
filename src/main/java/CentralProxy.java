@@ -27,21 +27,11 @@ public class CentralProxy {
             }
         }
 
-        StringBuilder outputMessageBuilder = new StringBuilder();
-        if (!irrelevantStorages.isEmpty()) {
-            outputMessageBuilder = new StringBuilder("Storages with ids: ");
-        }
-
         for (ZFrame irrelevantStorage : irrelevantStorages) {
-            outputMessageBuilder.append(irrelevantStorage).append(" ");
             storages.remove(irrelevantStorage);
+            System.out.println("Storage with id " + irrelevantStorage + " have been deleted");
         }
 
-        String outputMessage = outputMessageBuilder.toString();
-
-        if (!outputMessage.isEmpty()) {
-            System.out.println(outputMessage + "have been deleted\n");
-        }
     }
 
     private static void processGetRequest(Command command, ZMsg msg) {
