@@ -37,6 +37,7 @@ class Constants {
     // Other constants
     static final String DELIMITER = " ";
     static final int LIMIT = 2;
+    static final int LIMIT_FOR_INIT_COMMAND = 3;
     static final int IO_THREADS = 1;
     static final long NOTIFICATION_TIMEOUT = 3000;
     static final boolean DONT_WAIT = false;

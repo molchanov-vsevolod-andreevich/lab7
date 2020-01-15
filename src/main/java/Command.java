@@ -28,7 +28,7 @@ public class Command {
     private String args;
 
     public Command(String cmd) {
-        String[] splittedCmd = cmd.split(Constants.DELIMITER, Constants.LIMIT);
+        String[] splittedCmd = cmd.split(Constants.DELIMITER, Constants.LIMIT_FOR_INIT_COMMAND);
 
         for (String s : splittedCmd) {
             System.out.println(s);
