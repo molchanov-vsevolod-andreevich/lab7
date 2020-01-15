@@ -42,7 +42,7 @@ public class CentralProxy {
 
         boolean isKeyValid = false;
 
-        List<ZFrame> suitableStorageIndexes =
+        List<ZFrame> suitableStorageIndexes = new ArrayList<>();
 
         for (Map.Entry<ZFrame, StorageInfo> entry : storages.entrySet()) {
             StorageInfo storageInfo = entry.getValue();
